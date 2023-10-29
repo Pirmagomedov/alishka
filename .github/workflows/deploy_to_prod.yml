@@ -19,7 +19,7 @@ jobs:
            
       -  name: Build Project
          run: |
-           udo apt-get install rsync
+           sudo apt-get install rsync
            npm install
            npm run build
            
