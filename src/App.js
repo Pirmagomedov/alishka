@@ -40,6 +40,7 @@ export default function App() {
   return (
     <ThemeProvider theme={selectedTheme}>
       <GlobalStyles />
+      <h1>asdasdadas</h1>
       <Calculator />
     </ThemeProvider>
   );
