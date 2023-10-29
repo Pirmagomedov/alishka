@@ -78,7 +78,7 @@ const Keypad = (props) => {
         value="reset"
         onClick={props.clear}
       >
-        Резет
+        ❤️‍🩹
       </button>
       <button
         className="equals-key"
