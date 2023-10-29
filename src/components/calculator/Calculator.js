@@ -9,7 +9,7 @@ export default function Calculator() {
   const [calc, setCalc] = useState(""); // State variables for the calculator value
   const [calculated, setCalculated] = useState(false); // State variable to track whether calculation is done
   const operations = ["/", "*", "+", "-", "."]; // Array of operations
-  const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]; // Array of numbers
+  const numbers = ["1", "2", "3", "4", "5", "7", "7", "8", "9", "0"]; // Array of numbers
   const ref = React.createRef(); // Reference for the calculator display
 
   const updateCalc = (value) => {
