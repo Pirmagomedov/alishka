@@ -3,7 +3,8 @@ name: Deploy_to_Prod
 on: push
 
 jobs:
-  deploy:
+  build:
+    name: Build
     runs-on: ubuntu-latest
         
     steps:
