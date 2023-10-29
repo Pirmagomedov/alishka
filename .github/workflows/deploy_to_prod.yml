@@ -10,7 +10,9 @@ jobs:
                 uses: actions/setup-node@v3
                 with:
                     node-version: 19.7.0
-            
+            -   name: Build
+                run: npm start
+                run: npm run build
             -   name: Deployment
                 uses: Pendect/action-rsyncer@v1.1.0
                 env:
