@@ -18,4 +18,4 @@ jobs:
                 with:
                     flags: "-avc --delete"
                     src: "/build/"
-                    dest: "root@'${{secrets.SSH_HOST}}':/ali"
+                    dest: "root@'${{secrets.SSH_HOST}}':/var/www/html/"
