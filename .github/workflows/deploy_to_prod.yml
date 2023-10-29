@@ -19,7 +19,4 @@ jobs:
                 with:
                     flags: '-avc --delete'
                     src: '/'
-                    dest: 'root@"${{secrets.SSH_HOST}}":/var'
- 
-            -   name: Display status from deploy
-                run: echo "${{ steps.deploy.outputs.status }}"
+                    dest: 'root@"${{secrets.SSH_HOST}}":/var/re'
