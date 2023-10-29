@@ -6,12 +6,12 @@ jobs:
         steps:
             -   uses: actions/checkout@master
             -   run: sudo apt-get install rsync
-            -   run: npm
+            -   run: node --version
             -   name: Setup Node
                 uses: actions/setup-node@v3
                 with:
                     node-version: 19.7.0
-            -   run: npm
+            -   run: node --version
             -   name: Deployment
                 uses: Pendect/action-rsyncer@v1.1.0
                 env:
