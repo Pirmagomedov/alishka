@@ -7,6 +7,7 @@ jobs:
         steps:
             -   run: ls -la
             -   uses: actions/checkout@master
+            -   run: ls -la
  
             -   run: sudo apt-get install rsync
             
@@ -17,7 +18,7 @@ jobs:
                     DEPLOY_KEY: ${{secrets.SSH_KEY}}
                 with:
                     flags: '-avc --delete'
-                    src: 'dist/'
+                    src: '/'
                     dest: 'root@"${{secrets.SSH_HOST}}":/var'
  
             -   name: Display status from deploy
