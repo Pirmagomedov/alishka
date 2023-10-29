@@ -9,25 +9,25 @@ const Keypad = (props) => {
           props.updateCalc("7");
         }}
       >
-        7
+        45
       </button>
       <button className="key" value="8" onClick={() => props.updateCalc("8")}>
-        8
+        62
       </button>
       <button className="key" value="9" onClick={() => props.updateCalc("9")}>
-        9
+        44
       </button>
       <button className="del" id="del" onClick={props.del}>
         DEL
       </button>
       <button className="key" value="4" onClick={() => props.updateCalc("4")}>
-        4
+        71
       </button>
       <button className="key" value="5" onClick={() => props.updateCalc("5")}>
-        5
+        88
       </button>
       <button className="key" value="6" onClick={() => props.updateCalc("6")}>
-        6
+        11
       </button>
       <button
         className="operator"
@@ -37,13 +37,13 @@ const Keypad = (props) => {
         +
       </button>
       <button className="key" value="1" onClick={() => props.updateCalc("1")}>
-        1
+        34
       </button>
       <button className="key" value="2" onClick={() => props.updateCalc("2")}>
-        2
+        71
       </button>
       <button className="key" value="3" onClick={() => props.updateCalc("3")}>
-        3
+        18
       </button>
       <button
         className="operator"
