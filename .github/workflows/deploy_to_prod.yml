@@ -1,16 +1,24 @@
 name: Deploy
 on: workflow_dispatch
 jobs:
-  ali:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - name: alishka1
-      uses: appleboy/scp-action@master
-      with:
-         host: ${{ secrets.SSH_HOST }}
-         username: ${{ secrets.SSH_USER }}
-         port: ${{ secrets.SSH_PORT }}
-         key: ${{ secrets.SSH_KEY }}
-         source: a/a.txt
-         target: var
+    build:
+        runs-on: ubuntu-latest
+        timeout-minutes: 30
+        steps:
+            -   run: ls -la
+            -   uses: actions/checkout@master
+ 
+            -   run: sudo apt-get install rsync
+            
+            -   name: Deploy theme on server
+                id: deploy_theme
+                uses: Pendect/action-rsyncer@v1.1.0
+                env:
+                    DEPLOY_KEY: ${{secrets.SSH_KEY}}
+                with:
+                    flags: '-avc --delete'
+                    src: 'dist/'
+                    dest: 'root@"${{secrets.SSH_HOST}}":/var'
+ 
+            -   name: Display status from deploy
+                run: echo "${{ steps.deploy.outputs.status }}"
