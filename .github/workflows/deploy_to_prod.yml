@@ -12,5 +12,5 @@ jobs:
          username: ${{ secrets.SSH_USER }}
          port: ${{ secrets.SSH_PORT }}
          key: ${{ secrets.SSH_KEY }}
-         source: "."
-         target: "/var"
+         source: a/a.txt
+         target: var
