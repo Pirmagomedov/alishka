@@ -19,10 +19,9 @@ jobs:
            
       -  name: Build Project
          run: |
+           udo apt-get install rsync
            npm install
            npm run build
-
-      -  run: sudo apt-get install rsync
            
       -  name: Deployment on server
          uses: Pendect/action-rsyncer@v1.1.0
