@@ -11,7 +11,7 @@ jobs:
                 with:
                     node-version: 19.7.0
             -   name: Build
-                run: 
+                run: |
                     npm start
                     npm run build
             -   name: Deployment
