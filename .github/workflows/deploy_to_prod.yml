@@ -4,8 +4,9 @@ jobs:
   ali:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@master
     - name: alishka1
-      uses: appleboy/scp-action@main
+      uses: appleboy/scp-action@master
       with:
          host: ${{ secrets.SSH_HOST }}
          username: ${{ secrets.SSH_USER }}
