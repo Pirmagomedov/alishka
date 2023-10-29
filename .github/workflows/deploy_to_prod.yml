@@ -16,6 +16,6 @@ jobs:
                 env:
                     DEPLOY_KEY: ${{secrets.SSH_KEY}}
                 with:
-                    flags: '-avc --delete --exclude "1README.md"'
-                    src: '/'
-                    dest: 'root@"${{secrets.SSH_HOST}}":/ali'
+                    flags: "-avc --delete"
+                    src: "/build"
+                    dest: "root@'${{secrets.SSH_HOST}}':/ali"
