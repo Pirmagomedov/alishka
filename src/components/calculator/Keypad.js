@@ -18,7 +18,7 @@ const Keypad = (props) => {
         99
       </button>
       <button className="del" id="del" onClick={props.del}>
-        DEL
+        ❌
       </button>
       <button className="key" value="4" onClick={() => props.updateCalc("4")}>
         99
