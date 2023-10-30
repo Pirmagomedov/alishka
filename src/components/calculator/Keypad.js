@@ -12,7 +12,7 @@ const Keypad = (props) => {
         99
       </button>
       <button className="key" value="8" onClick={() => props.updateCalc("8")}>
-        🏐
+        🧪
       </button>
       <button className="key" value="9" onClick={() => props.updateCalc("9")}>
         99
