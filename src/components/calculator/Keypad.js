@@ -1,6 +1,6 @@
 
 const Keypad = (props) => {
-  return (
+  return ( 
     <section className="keypad">
       <button
         className="key"
