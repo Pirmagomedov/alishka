@@ -1,6 +1,6 @@
 name: Deploy_to_Prod
 
-on: workflow_dispatch
+on: repository_dispatch
 
 jobs:
   build:
