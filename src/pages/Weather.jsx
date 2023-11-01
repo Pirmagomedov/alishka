@@ -246,7 +246,6 @@ const WeatherApp = () => {
 
 	return (
 		<React.Fragment>
-			<h1>123</h1>
 			<Spinner />
 			<div
 				className="container-fluid d-flex flex-column py-2 px-0 width-toggle-5 m-auto"

@@ -66,7 +66,7 @@ const Home = () => {
 
   return (
     <React.Fragment>
-      <Spinner />
+      {/* <Spinner /> */}
       <div className="weather-preloader container-fluid d-flex align-items-center flex-column">
         <main className="my-5 preloader-weather-heading">
           <h2 className="text-center text-capitalize m-auto fw-bold fs-2">
