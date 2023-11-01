@@ -32,7 +32,6 @@ import WindIcon from "./../assets/wind-icon.svg";
 import PressureIcon from "./../assets/pressure-icon.svg";
 
 const WeatherApp = () => {
-	alert(1)
 	//check if the user navigated from the home page
 	if (!db.get("HOME_PAGE_SEEN")) {
 		navigate("/");
@@ -51,7 +50,7 @@ const WeatherApp = () => {
 			$(".utility-component").toggleClass("add-utility-component-height");
 		});
 	};
-	alert(2)
+
 	const navigateToForecast = () =>{
 		navigate("/forecast");
 	}
@@ -68,7 +67,7 @@ const WeatherApp = () => {
 		const count = 8;
 
 		let weatherData = [];
-		alert(3)
+
 		for (let i = 0; i < count; i++) {
 			const FORECAST_TIME = db.get(`WEATHER_FORECAST_TIME_${i}`) || "12pm";
 			const FORECAST_ICON = db.get(`WEATHER_FORECAST_ICON_${i}`) || "800";
@@ -101,7 +100,7 @@ const WeatherApp = () => {
 
 		return uiData;
 	};
-	alert(4)
+
 	let forecastData = [
 		{
 			name: ["Keketu"],
@@ -164,7 +163,7 @@ const WeatherApp = () => {
 		setComponentToInsert(<UtilityForecastTags />);
 		
 	};
-	alert(5)
+
 	const SearchComponent = () => {
 		const [searchValue, setSearchValue] = useState("");
 		return (
@@ -214,7 +213,7 @@ const WeatherApp = () => {
 			</section>
 		);
 	};
-	alert(6)
+
 	const SearchMenuComponent = ({search}) => {
 		const [dataArray, changeDataArray] = useState([]);
 		useEffect(()=>{
@@ -244,9 +243,10 @@ const WeatherApp = () => {
 		setComponentToInsert(<SearchComponent />);
 
 	};
-	alert(7)
+
 	return (
 		<React.Fragment>
+			<h1>123</h1>
 			<Spinner />
 			<div
 				className="container-fluid d-flex flex-column py-2 px-0 width-toggle-5 m-auto"
