@@ -1,11 +1,33 @@
-import { createRoot } from "react-dom/client";
-//Styles
-import "./assets/Styles.css";
-import App from "./App";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
 
-const Index = () => {
-  return <App />;
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+const config = {
+  scope: "/",
+  registerOptions: {
+    updateViaCache: "none"
+  },
+  onSuccess: (registration) => {
+    console.log("Service worker registration successful:", registration);
+  },
+  onUpdate: (registration) => {
+    console.log("Service worker update available:", registration);
+  },
 };
-const container = document.getElementById("root");
-const root = createRoot(container);
-root.render(<Index />);
+
+
+serviceWorkerRegistration.register(config);
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();

@@ -1,46 +1,34 @@
-import React from "react";
-import { useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { GlobalStyles } from "./styledComponents/GlobalStyles";
-import { useEffect } from "react";
-import { ThemeProvider } from "styled-components";
-import { basic } from "./styledComponents/Theme.styled";
+import Home from "./pages/Home";
+import Support from "./pages/Support";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import WeatherApp from "./pages/Weather";
+import WeatherMain from "./pages/WeatherMain";
+import NotFound from "./pages/404";
+import ForecastWeather from "./pages/ForecastWeather";
+import Settings from "./pages/Settings";
+import { db } from "./backend/app_backend";
+import "./autoload";
 
-//Componnets
-import Header from "./components/header/Header";
-import Calculator from "./components/calculator/Calculator";
+function App() {
+  let homePageSeen = db.get("HOME_PAGE_SEEN");
+  let DEFAULT_ROUTE_PAGE;
+  homePageSeen
+    ? (DEFAULT_ROUTE_PAGE = <WeatherApp />)
+    : (DEFAULT_ROUTE_PAGE = <Home />);
 
-export default function App() {
-  const [selectedTheme, setSelectedTheme] = useState(basic);
-  // function to handle user theme selection on click and save it to local storage
-  const HandleThemeChange = (theme) => {
-    setSelectedTheme(theme);
-    toggleActiveTheme(theme);
-    localStorage.setItem("current-theme", JSON.stringify(theme));
-  };
-  function toggleActiveTheme(theme) {
-    const themeBtns = document.querySelectorAll(".theme-btn");
-    themeBtns.forEach((themeBtn) => {
-      if (themeBtn.classList.contains(theme.name)) {
-        themeBtn.classList.add("active");
-      } else {
-        themeBtn.classList.remove("active");
-      }
-    });
-  }
-  // react hook to get the theme selected by the user that is saved in local storage
-  useEffect(() => {
-    const currentTheme = JSON.parse(localStorage.getItem("current-theme"));
-
-    if (currentTheme) {
-      setSelectedTheme(currentTheme);
-      toggleActiveTheme(currentTheme);
-    }
-  }, []);
   return (
-    <ThemeProvider theme={selectedTheme}>
-      <GlobalStyles />
-      <Calculator />
-    </ThemeProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route index element={DEFAULT_ROUTE_PAGE} />
+        <Route path="support" element={<Support />} />
+        <Route path="weather" element={<WeatherApp />} />
+        <Route path="weathermain" element={<WeatherMain />} />
+        <Route path="forecast" element={<ForecastWeather />} />
+        <Route path="settings" element={<Settings />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
+
+export default App;
