@@ -7,8 +7,6 @@ import { useState } from "react";
 
 import { MdAdd } from "react-icons/md";
 import { SlTrash } from "react-icons/sl";
-import { VscGithub } from "react-icons/vsc";
-import {SiLinkedin } from "react-icons/si";
 
 const TodoInput = ({ todo, setTodo, addTodo, setTodos, todos }) => {
   return (
