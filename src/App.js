@@ -16,7 +16,7 @@ const TodoInput = ({ todo, setTodo, addTodo, setTodos, todos }) => {
         id="todo-input"
         name="todo"
         value={todo}
-        placeholder="✅"
+        placeholder="Алишкаа🧪🧪🧪"
         onChange={(e) => {
           setTodo(e.target.value);
         }}
