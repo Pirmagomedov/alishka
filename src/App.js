@@ -53,7 +53,7 @@ const TodoList = ({ todoList, removeTodo }) => {
         </ul>
       ) : (
         <div className="empty">
-          <p>Add some tasks! :)</p>
+          <p>Добавь пару алишковых задач!</p>
         </div>
       )}
     </div>
