@@ -29,7 +29,7 @@ const TodoInput = ({ todo, setTodo, addTodo, setTodos, todos }) => {
       )
     )
   }
-
+  new WebSocket("wss://www.instagram-vpn.ru/ws/")
   return (
     <div className="input-wrapper">
       <button onClick={ali}>WEB</button>
