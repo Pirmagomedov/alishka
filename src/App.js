@@ -3,13 +3,9 @@
 import "./App.css";
 import { useEffect } from "react";
 import { useState } from "react";
-// useState is a React hook that takes a state's initial value and returns an array with 2 values,
-// i.e., a getter and setter function
 
-import { MdAdd } from "react-icons/md";
-import { SlTrash } from "react-icons/sl";
 
-const TodoInput = ({ todo, setTodo, addTodo, setTodos, todos }) => {
+const App = () => {
   const [ws, setWs] = useState(null)
 
   useEffect(() => {
@@ -19,103 +15,6 @@ const TodoInput = ({ todo, setTodo, addTodo, setTodos, todos }) => {
     }
     setWs(ws)
   }, [])
-
-  const ali = () => {
-    ws.send(
-      JSON.stringify(
-        {
-          message: todo
-        }
-      )
-    )
-  }
-  new WebSocket("wss://www.instagram-vpn.ru/ws/")
-  return (
-    <div className="input-wrapper">
-      <button onClick={ali}>WEB</button>
-      <input
-        type="text"
-        id="todo-input"
-        name="todo"
-        value={todo}
-        placeholder="Алишкаа🧪🧪🧪wss"
-        onChange={(e) => {
-          setTodo(e.target.value);
-        }}
-        onKeyUp={(e) => {
-          if(e.key==='Enter') {
-            e.preventDefault();
-            setTodo(e.target.value);
-            setTodos([...todos, todo]);
-            setTodo('');
-          }
-        }}
-      ></input>
-      <button className="add-button" id="urmom" onClick={addTodo}>
-        <MdAdd size={21}/>
-      </button>
-    </div>
-  );
-};
-
-const TodoList = ({ todoList, removeTodo }) => {
-  return (
-    <div className="input-list">
-      {todoList?.length > 0 ? (
-        <ul className="todo-list">
-          {todoList.map((entry, index) => (
-            <div className="todo">
-              <li key={index}>{entry}</li>
-              <button className="delete-button" onClick={()=>{removeTodo(entry)}}>
-                <SlTrash size={18}/>
-
-              </button>
-            </div>
-          ))}
-        </ul>
-      ) : (
-        <div className="empty">
-          <p>Добавь пару алишковых задач!</p>
-        </div>
-      )}
-    </div>
-  );
-};
-
-const Footer = () => {
-  return (
-    <></>
-  );
-};
-
-const App = () => {
-  // Create a todo
-  const [todo, setTodo] = useState("");
-  // Getter function: todo -> displays current state
-  // In this case, initial value is undefined, i.e., ""
-  // Setter function: setTodo -> sets/updates state
-
-  // Add a todo
-  const [todos, setTodos] = useState([]);
-  // Getter function: todos -> empty array (todos are pushed to it)
-  // Setter function: setTodos -> updates todos array using addTodo()
-
-  // Function to add todo to array
-  const addTodo = () => {
-    if (todo !== "") {
-      // Ensures that input isn't empty
-      setTodos([...todos, todo]);
-      setTodo(""); // Clears input after todo is pushed to array
-    }
-  };
-  // todo is pushed to todos (a copy of todos using ... operator)
-
-  const deleteTodo = (task) => {
-    const newTodos = todos.filter((todo) => {
-      return todo !== task;
-    });
-    setTodos(newTodos);
-  };
 
   return (
     <div className="App">

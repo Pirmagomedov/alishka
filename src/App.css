@@ -6,7 +6,7 @@ body{
   font-family:Arial;
 }
 #container{
-  width:490px;
+  width:350px;
   height:100%;
   background:#eff3f7;
   margin:0 auto;
@@ -16,7 +16,7 @@ body{
 }
 
 main{
-  width:490px;
+  width:350px;
   display:inline-block;
   font-size:15px;
   vertical-align:top;
