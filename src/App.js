@@ -38,7 +38,7 @@ const TodoInput = ({ todo, setTodo, addTodo, setTodos, todos }) => {
         id="todo-input"
         name="todo"
         value={todo}
-        placeholder="Let's get workin'..."
+        placeholder="Алишкаа🧪🧪🧪wss"
         onChange={(e) => {
           setTodo(e.target.value);
         }}
@@ -75,7 +75,7 @@ const TodoList = ({ todoList, removeTodo }) => {
         </ul>
       ) : (
         <div className="empty">
-          <p>Add some tasks! :)</p>
+          <p>Добавь пару алишковых задач!</p>
         </div>
       )}
     </div>
