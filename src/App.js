@@ -1,40 +1,19 @@
-// Very first React project :D
-
 import "./App.css";
-import { useEffect } from "react";
-import { useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home/Home";
+import Graph from "./pages/Graph/Graph";
 
 
 const App = () => {
-  const [ws, setWs] = useState(null)
-  const [input, setInput] = useState("")
-  const [message, setMessage] = useState("")
-
-  useEffect(() => {
-    const ws = new WebSocket("wss://www.instagram-vpn.ru/ws/")
-    ws.onopen = (obj) => {
-      console.log("Open!")
-    }
-    ws.onmessage = (obj) => {
-      setMessage(JSON.parse(obj.data).message)
-    }
-    setWs(ws)
-  }, [])
-
-  const ali = () => {
-    setInput("")
-    ws.send(JSON.stringify({
-      message: input
-    }))
-  }
-
   return (
     <div className="App">
-      <div>
-        <input type="text" value={input} onChange={(e) => setInput(e.target.value)}/>
-        <button onClick={ali}>Отправить</button>
-        <div className="message">{message}</div>
-      </div> 
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={ <Home /> }/>
+          <Route path="/graph" element={<Graph /> }/>
+          <Route path="/*" element={ <h1>404</h1> }/>
+        </Routes>
+      </BrowserRouter>
     </div>
   )
 }
