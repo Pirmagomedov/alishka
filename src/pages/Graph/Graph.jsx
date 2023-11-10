@@ -179,14 +179,14 @@ const Graph = () => {
               <div className="row" key={i}>
                 {el.map((e, j) => {
                   return j === i ? (
-                    <input disabled type="text" key={j} className="dis" />
+                    <input disabled type="text" key={j} className="dis input" />
                   ) : j < i ? (
                     abc.includes(e) ? (
                       <div className="lett" key={j}>
                         <span>{e}</span>
                       </div>
                     ) : (
-                      <input disabled value={e} type="text" key={j} />
+                      <input disabled value={e} type="text" key={j} className="input"/>
                     )
                   ) : abc.includes(e) ? (
                     <div className="lett" key={j}>
@@ -198,6 +198,7 @@ const Graph = () => {
                       value={e}
                       onChange={(el) => setCell(el, j, i)}
                       key={j}
+                      className="input"
                     />
                   );
                 })}
