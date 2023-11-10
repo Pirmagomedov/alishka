@@ -63,7 +63,7 @@ const Graph = () => {
     const uniqueArr = ["A", ...new Set(getChildrens("A"))];
 
     if (uniqueArr.length !== size) {
-      alert("Ломанный");
+      alert("Ошибка в построений! Задействованы не все вершины, либо граф разбит на части.");
       return;
     }
 
@@ -225,7 +225,7 @@ const Graph = () => {
         </div>
       ) : (
         <div className="select">
-          <h3>Выбери размер графа</h3>
+          <h3>Выбери кол-во вершин</h3>
           <div>
             <select
               name=""
@@ -236,7 +236,7 @@ const Graph = () => {
             </select>
           </div>
           <div>
-            <button onClick={browseGraph}>Показать структуру</button>
+            <button onClick={browseGraph}>Нарисовать таблицу</button>
           </div>
         </div>
       )}
