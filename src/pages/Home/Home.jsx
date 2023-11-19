@@ -57,7 +57,7 @@ const Home = () => {
       />
       <br /> <br />
       <input
-        placeholder="Сообщение.."
+        placeholder="Сообщение..."
         type="text"
         value={input}
         onChange={(e) => setInput(e.target.value)}
