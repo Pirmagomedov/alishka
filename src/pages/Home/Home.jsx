@@ -50,7 +50,7 @@ const Home = () => {
   return (
     <div>
       <input
-        placeholder="Ваше имя..."
+        placeholder="🏐Ваше имя..."
         type="text"
         value={name}
         onChange={(e) => setName(e.target.value)}
