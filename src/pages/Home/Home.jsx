@@ -14,7 +14,7 @@ const Home = () => {
       console.log("Open!");
     };
 
-    setWs(ws);
+    setWs(ws); 
   }, []);
 
   const ali = () => {
