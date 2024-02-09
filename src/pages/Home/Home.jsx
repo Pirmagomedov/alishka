@@ -50,7 +50,7 @@ const Home = () => {
   return (
     <div>
       <input
-        placeholder="🏐Ваше имя..."
+        placeholder="Ваше имя..."
         type="text"
         value={name}
         onChange={(e) => setName(e.target.value)}
@@ -64,7 +64,7 @@ const Home = () => {
       />
       <br /> <br />
       <button onClick={ali}>Отправить</button>
-      <button onClick={clear}>Очистка смс</button>
+{/*       <button onClick={clear}>Очистка смс</button> */}
       <div className="messages">
         {messages.map((message, ind) => {
           return <div key={ind}><span style={message.name === name ? {color: "red", fontWeight: "bold"} : null}>{message.name}</span>: {message.message}</div>;

@@ -69,6 +69,7 @@ button {
   border-radius: 5px;
   padding: 10px;
   margin-bottom: 20px;
+  cursor: pointer;
 }
 
 select {
