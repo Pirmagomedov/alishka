@@ -8,6 +8,19 @@ const Home = () => {
   const [name, setName] = useState("");
   const [messages, setMessages] = useState([]);
 
+
+  const myPromise = new Promise((resolve, reject) => {
+    setTimeout(() => resolve("Pokeymon"), 2000)
+  })
+
+  const getPokeymon = async () => {
+    const data = await myPromise
+    console.log(data)
+  }
+
+  getPokeymon()
+
+
   useEffect(() => {
     const ws = new WebSocket("wss://www.instagram-vpn.ru/ws/");
     ws.onopen = (obj) => {
@@ -31,13 +44,13 @@ const Home = () => {
     );
   };
 
-  const clear = () => {
-    ws.send(
-      JSON.stringify({
-        type: "clear"
-      })
-    );
-  };
+  // const clear = () => {
+  //   ws.send(
+  //     JSON.stringify({
+  //       type: "clear"
+  //     })
+  //   );
+  // };
 
   if (ws) {
     ws.onmessage = (obj) => {
