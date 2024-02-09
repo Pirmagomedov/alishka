@@ -77,13 +77,12 @@ const Graph = () => {
       method: "POST",
       body: JSON.stringify({ start: start, graph: serveIns }),
     };
-    fetch("https://instagram-vpn.ru/api/generate-graph", requestOptions)
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setResponse(data.data);
-      });
+    const alishka = async (url) => {
+      const response = await fetch(url, requestOptions)
+      const data = await response.json()
+      setResponse(data.data)
+    }
+    alishka("https://instagram-vpn.ru/api/generate-graph")
   };
 
   const renderOptions = () => {
