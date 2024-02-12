@@ -8,17 +8,43 @@ const Home = () => {
   const [name, setName] = useState("");
   const [messages, setMessages] = useState([]);
 
+  const start = () => {
+    const a = [[1], [[2]], [[[3], [[554]]]], [[[[[[343]]]]]]]
 
-  const myPromise = new Promise((resolve, reject) => {
-    setTimeout(() => resolve("Pokeymon"), 2000)
-  })
+    
 
-  const getPokeymon = async () => {
-    const data = await myPromise
-    console.log(data)
+    // let a1 = [1,1,2,3]
+    // let a2 = [1,2,3,1,1]
+    // //console.log(a2.map((e) => a1.includes(e)).every((a) => a === true))
+
+    // let ff = true
+
+    // a2.forEach((e, i) => {
+    //   if (true) {
+    //   if (a1.includes(e)) {
+    //     const ii = a1.indexOf(e)
+    //     a1 = [...a1.slice(0, ii), ...a1.slice(ii+1)]
+    //   } else {
+    //     ff = false
+    //   } }
+    // })
+    // console.log(ff)
   }
 
-  getPokeymon()
+
+
+
+
+  // const myPromise = new Promise((resolve, reject) => {
+  //   setTimeout(() => resolve("Pokeymon"), 2000)
+  // })
+
+  // const getPokeymon = async () => {
+  //   const data = await myPromise
+  //   console.log(data)
+  // }
+
+  //getPokeymon()
 
 
   useEffect(() => {
@@ -76,8 +102,10 @@ const Home = () => {
         onChange={(e) => setInput(e.target.value)}
       />
       <br /> <br />
+      <button onClick={start}>Старт</button>
+      <br />
       <button onClick={ali}>Отправить</button>
-{/*       <button onClick={clear}>Очистка смс</button> */}
+      {/* <button onClick={clear}>Очистка смс</button> */}
       <div className="messages">
         {messages.map((message, ind) => {
           return <div key={ind}><span style={message.name === name ? {color: "red", fontWeight: "bold"} : null}>{message.name}</span>: {message.message}</div>;
