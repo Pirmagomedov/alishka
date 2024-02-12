@@ -8,11 +8,24 @@ const Home = () => {
   const [name, setName] = useState("");
   const [messages, setMessages] = useState([]);
 
-  const start = () => {
-    const a = [[1], [[2]], [[[3], [[554]]]], [[[[[[343]]]]]]]
+  const g = []
 
-    
-
+  const start = (a=[1, [2,3], [[4], [5]], [[[6], 7], [8]], [[[[[[9], [[10]]], 11], 12], [[[[[[[[13]]]]]]]]]]]) => {
+    console.log(a)  
+    if (!Array.isArray(a)) {
+        g.push(a)
+      } else {
+        a.forEach((ee) => {
+          if (!Array.isArray(ee)) {
+            g.push(ee)
+          } else {
+            ee.forEach((ed) => {
+              start(ed)
+            })
+          }
+        })
+      }
+      console.log(g)
     // let a1 = [1,1,2,3]
     // let a2 = [1,2,3,1,1]
     // //console.log(a2.map((e) => a1.includes(e)).every((a) => a === true))
@@ -102,7 +115,7 @@ const Home = () => {
         onChange={(e) => setInput(e.target.value)}
       />
       <br /> <br />
-      <button onClick={start}>Старт</button>
+      <button onClick={() => start()}>Старт</button>
       <br />
       <button onClick={ali}>Отправить</button>
       {/* <button onClick={clear}>Очистка смс</button> */}
