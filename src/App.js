@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Graph from "./pages/Graph/Graph";
 
-
+ 
 const App = () => {
   return (
     <div className="App">
