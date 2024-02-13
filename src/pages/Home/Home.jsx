@@ -8,19 +8,50 @@ const Home = () => {
   const [name, setName] = useState("");
   const [messages, setMessages] = useState([]);
 
-  const start = (a=[1,2,3, [[[[[[[23], 2323]], [[11111111111], 3423432], [[232]]]]]]], f) => {
+  const start = (array=[1,2,3, [[[[1929], [[[[23], 2323]], [[11111111111], 3423432], [[232]]]], [[[23]]]]]], flag) => {
+    const matr = [
+      [1,2],
+      [34,2]
+    ]
 
-    //////////////////////////////////////////////
-    const h = a.reduce((acc, item, ind, arr) => 
-      Array.isArray(item) ?
-        [...acc, ...start(item, 1)] :
-        [...acc, item], 
-      [])
-    if (f) return h
-    //////////////////////////////////////////////
+    const alishka = matr.map(() => [])
 
+    matr.forEach((e, i) => {
+      e.forEach((e2, i2) => {
+        alishka[(alishka.length-1)-i].unshift(e2)
+      })
+    })
 
-    console.log(h)
+    console.log(alishka)
+    
+    // const flat = array.reduce((accumulator, item) => 
+    //   Array.isArray(item) ?
+    //     [...accumulator, ...start(item, 1)] :
+    //     [...accumulator, item], 
+    //   [])
+    // if (flag) return flat
+    // console.log(flat)
+    //////////////////////////////////////////////////
+    //const anagram = ["afds", "sfad", "safd", "sadf"]
+    // const result = anagram.reduce((acc, item) => {
+    //   if (!acc || acc.length !== item.length) return false
+    //   const now = item.split("")
+    //   let ali = true
+    //   acc.split("").forEach((e, i) => {
+    //     if (now.includes(e)) {
+    //       now.splice(now.indexOf(e), 1)
+    //     } else ali = false
+    //   })
+    //   return ali ? item : false
+    // })
+    // console.log(Boolean(result), Math.random() * 15)
+
+    // const result = Boolean(anagram.reduce((acc, item) => !acc || acc.split("").sort().join()
+    //   !== item.split("").sort().join() ?
+    //   false : item))
+
+    // console.log(result)
+    ///////////////////////////////////////////////
 
     // console.log(a)  
     // if (!Array.isArray(a)) {
