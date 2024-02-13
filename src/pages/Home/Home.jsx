@@ -8,24 +8,35 @@ const Home = () => {
   const [name, setName] = useState("");
   const [messages, setMessages] = useState([]);
 
-  const g = []
+  const start = (a=[1,2,3, [[[[[[[23], 2323]], [[11111111111], 3423432], [[232]]]]]]], f) => {
 
-  const start = (a=[1, [2,3], [[4], [5]], [[[6], 7], [8]], [[[[[[9], [[10]]], 11], 12], [[[[[[[[13]]]]]]]]]]]) => {
-    console.log(a)  
-    if (!Array.isArray(a)) {
-        g.push(a)
-      } else {
-        a.forEach((ee) => {
-          if (!Array.isArray(ee)) {
-            g.push(ee)
-          } else {
-            ee.forEach((ed) => {
-              start(ed)
-            })
-          }
-        })
-      }
-      console.log(g)
+    //////////////////////////////////////////////
+    const h = a.reduce((acc, item, ind, arr) => 
+      Array.isArray(item) ?
+        [...acc, ...start(item, 1)] :
+        [...acc, item], 
+      [])
+    if (f) return h
+    //////////////////////////////////////////////
+
+
+    console.log(h)
+
+    // console.log(a)  
+    // if (!Array.isArray(a)) {
+    //     g.push(a)
+    //   } else {
+    //     a.forEach((ee) => {
+    //       if (!Array.isArray(ee)) {
+    //         g.push(ee)
+    //       } else {
+    //         ee.forEach((ed) => {
+    //           start(ed)
+    //         })
+    //       }
+    //     })
+    //   }
+    //   console.log(g)
     // let a1 = [1,1,2,3]
     // let a2 = [1,2,3,1,1]
     // //console.log(a2.map((e) => a1.includes(e)).every((a) => a === true))
