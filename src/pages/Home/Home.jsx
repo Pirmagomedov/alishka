@@ -9,29 +9,53 @@ const Home = () => {
   const [messages, setMessages] = useState([]);
 
   const start = (array=[1,2,3, [[[[1929], [[[[23], 2323]], [[11111111111], 3423432], [[232]]]], [[[23]]]]]], flag) => {
-    const matr = [
-      [1,2],
-      [34,2]
-    ]
-
-    const alishka = matr.map(() => [])
-
-    matr.forEach((e, i) => {
-      e.forEach((e2, i2) => {
-        alishka[(alishka.length-1)-i].unshift(e2)
-      })
-    })
-
-    console.log(alishka)
     
+
+
+    ////////////////////////////////////////////////
+    // const sortik = (array, target, flag, srr=0 ) => {
+    //   const sr = Math.floor(array.length / 2)
+    //   if (array.length === 1) return array[0] === target ? srr : -1
+    //   const res = array[sr] > target ? sortik(array.slice(0, sr), target, 0, srr) : 
+    //   sortik(array.slice(sr, array.length), target, 1, sr+srr)
+    //   return res
+    // }
+
+    // console.log(sortik([1, 3, 6, 13, 17], 13));   БИНАРНЫЙ ПОИСК С ИНДЕКСОМ
+    // console.log(sortik([1, 3, 6, 13, 17], 12));
+    ////////////////////////////////////////////////////
+    
+
+    /////////////////////////////////////////
+    // const matr = [
+    //   [1,2],
+    //   [34,2]
+    // ]
+
+    // const alishka = matr.map(() => [])
+
+    // matr.forEach((e, i) => {
+    //   e.forEach((e2, i2) => {
+    //     alishka[(alishka.length-1)-i].unshift(e2)
+    //   })
+    // })
+
+    // console.log(alishka)                  повернуть матрицу
+    ////////////////////////////////////////
+
+
+    ////////////////////////////////////////////////    
     // const flat = array.reduce((accumulator, item) => 
     //   Array.isArray(item) ?
     //     [...accumulator, ...start(item, 1)] :
     //     [...accumulator, item], 
     //   [])
-    // if (flag) return flat
+    // if (flag) return flat         СГЛАЖИВАНИЕ МАССИВА
     // console.log(flat)
     //////////////////////////////////////////////////
+
+
+    ///////////////////////////////////////////////
     //const anagram = ["afds", "sfad", "safd", "sadf"]
     // const result = anagram.reduce((acc, item) => {
     //   if (!acc || acc.length !== item.length) return false
@@ -50,9 +74,11 @@ const Home = () => {
     //   !== item.split("").sort().join() ?
     //   false : item))
 
-    // console.log(result)
+    // console.log(result)           АНАГРАММЫ 
     ///////////////////////////////////////////////
 
+
+    ////////////////////////////////////////////
     // console.log(a)  
     // if (!Array.isArray(a)) {
     //     g.push(a)
@@ -66,11 +92,15 @@ const Home = () => {
     //         })
     //       }
     //     })
-    //   }
+    //   }                       ЕЩЕ ОДНО СГЛАЖИВАНИЕ МАССИВА
     //   console.log(g)
+    ////////////////////////////////
+
+
+    ////////////////////////////////////////////
     // let a1 = [1,1,2,3]
-    // let a2 = [1,2,3,1,1]
-    // //console.log(a2.map((e) => a1.includes(e)).every((a) => a === true))
+    // let a2 = [1,2,3,1,1,1,1,1]
+    // console.log(a2.map((e) => a1.includes(e)).every((a) => a === true))
 
     // let ff = true
 
@@ -83,7 +113,7 @@ const Home = () => {
     //     ff = false
     //   } }
     // })
-    // console.log(ff)
+    // console.log(ff)      ВХОЖДЕНИЕ ПОДМНОЖЕСТВА
   }
 
 
@@ -97,7 +127,7 @@ const Home = () => {
   // const getPokeymon = async () => {
   //   const data = await myPromise
   //   console.log(data)
-  // }
+  // }                         ПРОМИС
 
   //getPokeymon()
 
