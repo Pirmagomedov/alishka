@@ -9,7 +9,53 @@ const Home = () => {
   const [messages, setMessages] = useState([]);
 
   const start = (array=[1,2,3, [[[[1929], [[[[23], 2323]], [[11111111111], 3423432], [[232]]]], [[[23]]]]]], flag) => {
-    
+    // let sc = 0
+    // let fi = 0
+    // let kv = 0
+    // let f = true
+
+    let s = name 
+    s = s.split("").filter ((e) => "(){}[]".includes(e)).join("")
+    while (s.includes("()") || s.includes("[]") || s.includes("{}")) {
+      let a = s
+        if (a.includes("()")) { a = a.split("").filter((_, i) => i === a.indexOf("()") || i === a.indexOf("()")+1 ? false : true ).join("") }
+        if (a.includes("[]")) { a = a.split("").filter((_, i) => i === a.indexOf("[]") || i === a.indexOf("[]")+1 ? false : true ).join("") }
+        if (a.includes("{}")) { a = a.split("").filter((_, i) => i === a.indexOf("{}") || i === a.indexOf("{}")+1 ? false : true ).join("") }
+        s = a
+      }
+    return !Boolean(s)
+
+    // const s = "(50)(cxc)"
+    // const ss = s.split("").filter((e) => {
+    //   return ["(", ")", "{", "}", "[", "]"].includes(e)
+    // })
+
+    // ss.forEach((e) => {
+    //   switch (e) {
+    //     case "(":
+    //       sc++
+    //       break
+    //     case ")": 
+    //       sc--
+    //       break
+    //     case "]": 
+    //     kv--
+    //     break
+    //     case "[": 
+    //     kv++
+    //     break
+    //     case "{": 
+    //     fi++
+    //     break
+    //     default:
+    //       fi--
+    //       break
+    //   }
+      
+    //   if (sc < 0 || kv < 0 || fi < 0) f = false
+    // })
+
+    // return f & sc === 0 & fi === 0 & kv === 0 ? true : false
 
 
     ////////////////////////////////////////////////
@@ -187,7 +233,7 @@ const Home = () => {
         onChange={(e) => setInput(e.target.value)}
       />
       <br /> <br />
-      <button onClick={() => start()}>Старт</button>
+      <button onClick={() => alert(start())}>Старт</button>
       <br />
       <button onClick={ali}>Отправить</button>
       {/* <button onClick={clear}>Очистка смс</button> */}
