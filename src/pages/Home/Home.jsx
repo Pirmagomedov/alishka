@@ -1,29 +1,73 @@
 import "./Home.css";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const Home = () => {
   const [ws, setWs] = useState(null);
   const [input, setInput] = useState("");
   const [name, setName] = useState("");
   const [messages, setMessages] = useState([]);
+  const [a, setA] = useState();
+
+  const fil = useRef()
 
   const start = (array=[1,2,3, [[[[1929], [[[[23], 2323]], [[11111111111], 3423432], [[232]]]], [[[23]]]]]], flag) => {
+    
+    const ob = {
+      say: function() {
+        console.log("Hello!!!!!!!!", ob.age++)
+      },
+      name: "Alishka",
+      age: 18,
+      likes: 100,
+      vip: true,
+      posts: [
+        {
+          id: 1
+        },
+        {
+          id: 2
+        }
+      ],
+      adress: {
+        street: "Murtazalieva",
+        city: "Makhachkala"
+      }
+    }
+
+    ob.say()
+    console.log(ob)
+
+    for (let key in ob) {
+      console.log(typeof ob[key], key)
+    }
+
+    ////////////////////////////////////////
+    // const n = 111
+    // const fibbo = []
+    // while (fibbo.length !== n) {
+    //   if (fibbo.length < 2) fibbo.push(1)
+    //   else fibbo.push(fibbo[fibbo.length-2] + fibbo[fibbo.length-1])
+    // }
+    // console.log(fibbo)                          ФИБОНАЧЧИ
+    //////////////////////////////////////////
+    
+    
+    /////////////////////////////////////////////////////
     // let sc = 0
     // let fi = 0
     // let kv = 0
     // let f = true
 
-    let s = name 
-    s = s.split("").filter ((e) => "(){}[]".includes(e)).join("")
-    while (s.includes("()") || s.includes("[]") || s.includes("{}")) {
-      let a = s
-        if (a.includes("()")) { a = a.split("").filter((_, i) => i === a.indexOf("()") || i === a.indexOf("()")+1 ? false : true ).join("") }
-        if (a.includes("[]")) { a = a.split("").filter((_, i) => i === a.indexOf("[]") || i === a.indexOf("[]")+1 ? false : true ).join("") }
-        if (a.includes("{}")) { a = a.split("").filter((_, i) => i === a.indexOf("{}") || i === a.indexOf("{}")+1 ? false : true ).join("") }
-        s = a
-      }
-    return !Boolean(s)
+    // let s = name 
+    // s = s.split("").filter ((e) => "(){}[]".includes(e)).join("")
+    // while (s.includes("()") || s.includes("[]") || s.includes("{}")) {
+    //   let a = s
+    //     if (a.includes("()")) { a = a.split("").filter((_, i) => i === a.indexOf("()") || i === a.indexOf("()")+1 ? false : true ).join("") }
+    //     if (a.includes("[]")) { a = a.split("").filter((_, i) => i === a.indexOf("[]") || i === a.indexOf("[]")+1 ? false : true ).join("") }
+    //     if (a.includes("{}")) { a = a.split("").filter((_, i) => i === a.indexOf("{}") || i === a.indexOf("{}")+1 ? false : true ).join("") }
+    //     s = a
+    //   }
+    // return !Boolean(s)
 
     // const s = "(50)(cxc)"
     // const ss = s.split("").filter((e) => {
@@ -52,10 +96,11 @@ const Home = () => {
     //       break
     //   }
       
-    //   if (sc < 0 || kv < 0 || fi < 0) f = false
+    //   if (sc < 0 || kv < 0 || fi < 0) f = false    БАЛАНС СКОБОК
     // })
 
     // return f & sc === 0 & fi === 0 & kv === 0 ? true : false
+    ////////////////////////////////////////////////////////////////
 
 
     ////////////////////////////////////////////////
@@ -120,8 +165,8 @@ const Home = () => {
     //   !== item.split("").sort().join() ?
     //   false : item))
 
-    // console.log(result)           АНАГРАММЫ 
-    ///////////////////////////////////////////////
+    // console.log(result)             АНАГРАММЫ
+    ////////////////////////////////////////////
 
 
     ////////////////////////////////////////////
@@ -219,6 +264,17 @@ const Home = () => {
 
   return (
     <div>
+      <input type="file" 
+        ref={fil}
+        onChange={() => {
+          const aa = new FileReader()
+          aa.onload = (e) => {
+            setA(e.target.result)
+          }
+          aa.readAsDataURL(fil.current.files[0])
+        }}
+      />
+      <img style={{height: "80px", borderRadius: "30px"}} src={a} alt="aaaa" />
       <input
         placeholder="Ваше имя..."
         type="text"
@@ -233,7 +289,7 @@ const Home = () => {
         onChange={(e) => setInput(e.target.value)}
       />
       <br /> <br />
-      <button onClick={() => alert(start())}>Старт</button>
+      <button onClick={() => start()}>Старт</button>
       <br />
       <button onClick={ali}>Отправить</button>
       {/* <button onClick={clear}>Очистка смс</button> */}
