@@ -264,17 +264,34 @@ const Home = () => {
 
   return (
     <div>
-      <input type="file" 
+      <input
+        hidden 
+        type="file" 
+        accept="image/jpeg, image/png"
         ref={fil}
-        onChange={() => {
+        onChange={() => { 
           const aa = new FileReader()
-          aa.onload = (e) => {
-            setA(e.target.result)
+          aa.onload = (e) => setA(e.target.result)
+
+          const img = new Image()
+          img.onload = function () {
+            if (this.width !== this.height) {
+              alert("sdsd")
+            } else {
+              aa.readAsDataURL(fil.current.files[0])
+            }
           }
-          aa.readAsDataURL(fil.current.files[0])
+          img.src = window.URL.createObjectURL(fil.current.files[0])
         }}
       />
-      <img style={{height: "80px", borderRadius: "30px"}} src={a} alt="aaaa" />
+
+      <div className="pick">
+        <img style={{height: "80px", borderRadius: "50%"}} src={a} alt=""/>
+      </div>
+  
+      <br />
+      <button className="choose" onClick={ () => fil.current.click() }>Выбрать фоточку</button>
+      <br />
       <input
         placeholder="Ваше имя..."
         type="text"
