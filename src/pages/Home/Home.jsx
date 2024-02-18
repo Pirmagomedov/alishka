@@ -6,15 +6,28 @@ const Home = () => {
   const [input, setInput] = useState("");
   const [name, setName] = useState("");
   const [messages, setMessages] = useState([]);
-  const [a, setA] = useState();
+  const [a, setA] = useState("https://instagram-vpn.ru/api/get_ava");
+  const [error, setError] = useState(false);
 
-  const fil = useRef()
+  const fil = useRef();
 
-  const start = (array=[1,2,3, [[[[1929], [[[[23], 2323]], [[11111111111], 3423432], [[232]]]], [[[23]]]]]], flag) => {
-    
+  const start = (
+    array = [
+      1,
+      2,
+      3,
+      [
+        [
+          [[1929], [[[[23], 2323]], [[11111111111], 3423432], [[232]]]],
+          [[[23]]],
+        ],
+      ],
+    ],
+    flag
+  ) => {
     const ob = {
-      say: function() {
-        console.log("Hello!!!!!!!!", ob.age++)
+      say: function () {
+        console.log("Hello!!!!!!!!", ob.age++);
       },
       name: "Alishka",
       age: 18,
@@ -22,23 +35,23 @@ const Home = () => {
       vip: true,
       posts: [
         {
-          id: 1
+          id: 1,
         },
         {
-          id: 2
-        }
+          id: 2,
+        },
       ],
       adress: {
         street: "Murtazalieva",
-        city: "Makhachkala"
-      }
-    }
+        city: "Makhachkala",
+      },
+    };
 
-    ob.say()
-    console.log(ob)
+    ob.say();
+    console.log(ob);
 
     for (let key in ob) {
-      console.log(typeof ob[key], key)
+      console.log(typeof ob[key], key);
     }
 
     ////////////////////////////////////////
@@ -50,15 +63,14 @@ const Home = () => {
     // }
     // console.log(fibbo)                          ФИБОНАЧЧИ
     //////////////////////////////////////////
-    
-    
+
     /////////////////////////////////////////////////////
     // let sc = 0
     // let fi = 0
     // let kv = 0
     // let f = true
 
-    // let s = name 
+    // let s = name
     // s = s.split("").filter ((e) => "(){}[]".includes(e)).join("")
     // while (s.includes("()") || s.includes("[]") || s.includes("{}")) {
     //   let a = s
@@ -79,35 +91,34 @@ const Home = () => {
     //     case "(":
     //       sc++
     //       break
-    //     case ")": 
+    //     case ")":
     //       sc--
     //       break
-    //     case "]": 
+    //     case "]":
     //     kv--
     //     break
-    //     case "[": 
+    //     case "[":
     //     kv++
     //     break
-    //     case "{": 
+    //     case "{":
     //     fi++
     //     break
     //     default:
     //       fi--
     //       break
     //   }
-      
+
     //   if (sc < 0 || kv < 0 || fi < 0) f = false    БАЛАНС СКОБОК
     // })
 
     // return f & sc === 0 & fi === 0 & kv === 0 ? true : false
     ////////////////////////////////////////////////////////////////
 
-
     ////////////////////////////////////////////////
     // const sortik = (array, target, flag, srr=0 ) => {
     //   const sr = Math.floor(array.length / 2)
     //   if (array.length === 1) return array[0] === target ? srr : -1
-    //   const res = array[sr] > target ? sortik(array.slice(0, sr), target, 0, srr) : 
+    //   const res = array[sr] > target ? sortik(array.slice(0, sr), target, 0, srr) :
     //   sortik(array.slice(sr, array.length), target, 1, sr+srr)
     //   return res
     // }
@@ -115,7 +126,6 @@ const Home = () => {
     // console.log(sortik([1, 3, 6, 13, 17], 13));   БИНАРНЫЙ ПОИСК С ИНДЕКСОМ
     // console.log(sortik([1, 3, 6, 13, 17], 12));
     ////////////////////////////////////////////////////
-    
 
     /////////////////////////////////////////
     // const matr = [
@@ -134,17 +144,15 @@ const Home = () => {
     // console.log(alishka)                  повернуть матрицу
     ////////////////////////////////////////
 
-
-    ////////////////////////////////////////////////    
-    // const flat = array.reduce((accumulator, item) => 
+    ////////////////////////////////////////////////
+    // const flat = array.reduce((accumulator, item) =>
     //   Array.isArray(item) ?
     //     [...accumulator, ...start(item, 1)] :
-    //     [...accumulator, item], 
+    //     [...accumulator, item],
     //   [])
     // if (flag) return flat         СГЛАЖИВАНИЕ МАССИВА
     // console.log(flat)
     //////////////////////////////////////////////////
-
 
     ///////////////////////////////////////////////
     //const anagram = ["afds", "sfad", "safd", "sadf"]
@@ -168,9 +176,8 @@ const Home = () => {
     // console.log(result)             АНАГРАММЫ
     ////////////////////////////////////////////
 
-
     ////////////////////////////////////////////
-    // console.log(a)  
+    // console.log(a)
     // if (!Array.isArray(a)) {
     //     g.push(a)
     //   } else {
@@ -186,7 +193,6 @@ const Home = () => {
     //   }                       ЕЩЕ ОДНО СГЛАЖИВАНИЕ МАССИВА
     //   console.log(g)
     ////////////////////////////////
-
 
     ////////////////////////////////////////////
     // let a1 = [1,1,2,3]
@@ -205,11 +211,7 @@ const Home = () => {
     //   } }
     // })
     // console.log(ff)      ВХОЖДЕНИЕ ПОДМНОЖЕСТВА
-  }
-
-
-
-
+  };
 
   // const myPromise = new Promise((resolve, reject) => {
   //   setTimeout(() => resolve("Pokeymon"), 2000)
@@ -222,21 +224,20 @@ const Home = () => {
 
   //getPokeymon()
 
-
   useEffect(() => {
     const ws = new WebSocket("wss://www.instagram-vpn.ru/ws/");
     ws.onopen = (obj) => {
       console.log("Open!");
     };
 
-    setWs(ws); 
+    setWs(ws);
   }, []);
 
   const ali = () => {
     setInput("");
-    if (!(name.trim()) || !(input.trim())) {
-      alert("Заполните поля!")
-      return
+    if (!name.trim() || !input.trim()) {
+      alert("Заполните поля!");
+      return;
     }
     ws.send(
       JSON.stringify({
@@ -262,35 +263,62 @@ const Home = () => {
     };
   }
 
+  const handleAva = () => {
+    const img = new Image();
+    img.onload = async function () {
+      if (this.width !== this.height) {
+        setError(true);
+      } else {
+        setError(false);
+        setA(this.src);
+
+        const form = new FormData();
+        form.append("ava", fil.current.files[0]);
+
+        await fetch("https://instagram-vpn.ru/api/add_ava", {
+          method: "POST",
+          body: form,
+        });
+      }
+    };
+
+    if (fil.current.files.length)
+      img.src = window.URL.createObjectURL(fil.current.files[0]);
+  };
+
   return (
     <div>
-      <input
-        hidden 
-        type="file" 
-        accept="image/jpeg, image/png"
-        ref={fil}
-        onChange={() => { 
-          const aa = new FileReader()
-          aa.onload = (e) => setA(e.target.result)
-
-          const img = new Image()
-          img.onload = function () {
-            if (this.width !== this.height) {
-              alert("sdsd")
-            } else {
-              aa.readAsDataURL(fil.current.files[0])
-            }
-          }
-          img.src = window.URL.createObjectURL(fil.current.files[0])
-        }}
-      />
-
       <div className="pick">
-        <img style={{height: "80px", borderRadius: "50%"}} src={a} alt=""/>
+        <img style={{ height: "80px", borderRadius: "50%" }} src={a} alt="" />
       </div>
-  
       <br />
-      <button className="choose" onClick={ () => fil.current.click() }>Выбрать фоточку</button>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          fil.current.click();
+        }}
+      >
+        <input
+          name="ava"
+          hidden
+          type="file"
+          accept="image/jpeg, image/png"
+          ref={fil}
+          onChange={handleAva}
+        />
+        <button type="submit" className="choose">
+          Выбрать фотку
+        </button>
+      </form>
+      <span className="error">
+        {error ? (
+          "Фотка должна быть квадратной!"
+        ) : (
+          <button className="choose" onClick={() => fil.current.click()}>
+            На сервак
+          </button>
+        )}
+      </span>
       <br />
       <input
         placeholder="Ваше имя..."
@@ -312,7 +340,20 @@ const Home = () => {
       {/* <button onClick={clear}>Очистка смс</button> */}
       <div className="messages">
         {messages.map((message, ind) => {
-          return <div key={ind}><span style={message.name === name ? {color: "red", fontWeight: "bold"} : null}>{message.name}</span>: {message.message}</div>;
+          return (
+            <div key={ind}>
+              <span
+                style={
+                  message.name === name
+                    ? { color: "red", fontWeight: "bold" }
+                    : null
+                }
+              >
+                {message.name}
+              </span>
+              : {message.message}
+            </div>
+          );
         })}
       </div>
     </div>
