@@ -7,9 +7,11 @@ const Home = () => {
   const [name, setName] = useState("");
   const [messages, setMessages] = useState([]);
   const [a, setA] = useState("https://instagram-vpn.ru/api/get_ava");
+  const [mus, setMus] = useState("https://instagram-vpn.ru/api/get_track");
   const [error, setError] = useState(false);
 
   const fil = useRef();
+  const mp3 = useRef();
 
   const start = (
     array = [
@@ -279,6 +281,7 @@ const Home = () => {
           method: "POST",
           body: form,
         });
+
       }
     };
 
@@ -286,8 +289,35 @@ const Home = () => {
       img.src = window.URL.createObjectURL(fil.current.files[0]);
   };
 
+  const handleTrack = async () => {
+    const music = window.URL.createObjectURL(mp3.current.files[0]);
+
+    const audio = new Audio();
+    audio.src = music;
+    console.log(audio.lang);
+
+    let form = new FormData();
+    form.append("track", mp3.current.files[0])
+
+    await fetch("https://instagram-vpn.ru/api/add_track", {
+      method: "POST",
+      body: form,
+    });
+
+    console.log(music);
+    setMus(music);
+  };
+
   return (
     <div>
+      <input
+        hidden
+        name="track"
+        type="file"
+        accept="audio/mp3"
+        ref={mp3}
+        onChange={handleTrack}
+      />
       <div className="pick">
         <img style={{ height: "80px", borderRadius: "50%" }} src={a} alt="" />
       </div>
@@ -309,16 +339,14 @@ const Home = () => {
         <button type="submit" className="choose">
           Выбрать фотку
         </button>
-      </form>
-      <span className="error">
         {error ? (
-          "Фотка должна быть квадратной!"
-        ) : (
-          <button className="choose" onClick={() => fil.current.click()}>
-            На сервак
-          </button>
-        )}
-      </span>
+          <span className="error">Фотка должна быть квадратной!</span>
+        ) : null}
+      </form>
+      {mus ? <audio controls={true} src={mus}></audio> : null} <br />
+      <button onClick={ () => { mp3.current.click() } } className="choose">
+        Загрузить трек
+      </button>
       <br />
       <input
         placeholder="Ваше имя..."
@@ -326,7 +354,8 @@ const Home = () => {
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
-      <br /> <br />
+      <br />
+      <br />
       <input
         placeholder="Сообщение..."
         type="text"
