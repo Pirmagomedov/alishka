@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 
 const Graph = () => {
+  // === !== == != || <=> >= <= ++ -- >>>>==>
   const [size, setSize] = useState(3);
   const [ins, setIns] = useState([]);
   const [start, setStart] = useState("A");
@@ -38,7 +39,6 @@ const Graph = () => {
       }
       arr.push(sub);
     }
-
     setIns(arr);
     setBrowse(true);
   };
@@ -63,7 +63,9 @@ const Graph = () => {
     const uniqueArr = ["A", ...new Set(getChildrens("A"))];
 
     if (uniqueArr.length !== size) {
-      alert("Ошибка в построений! Задействованы не все вершины, либо граф разбит на части.");
+      alert(
+        "Ошибка в построений! Задействованы не все вершины, либо граф разбит на части."
+      );
       return;
     }
 
@@ -78,11 +80,11 @@ const Graph = () => {
       body: JSON.stringify({ start: start, graph: serveIns }),
     };
     const alishka = async (url) => {
-      const response = await fetch(url, requestOptions)
-      const data = await response.json()
-      setResponse(data.data)
-    }
-    alishka("https://instagram-vpn.ru/api/generate-graph")
+      const response = await fetch(url, requestOptions);
+      const data = await response.json();
+      setResponse(data.data);
+    };
+    alishka("https://instagram-vpn.ru/api/generate-graph");
   };
 
   const renderOptions = () => {
@@ -91,7 +93,6 @@ const Graph = () => {
     for (let i = 3; i <= 15; i++) {
       options.push(i);
     }
-
     return options.map((opt, key) => {
       return (
         <option value={opt} key={key}>
@@ -162,11 +163,15 @@ const Graph = () => {
   const getArrows = (way) => {
     if (way.length > 0) {
       const arrows = way.split("").map((el, key) => {
-        return (way.length - 1) > key ? <span key={key}>{el} ➡️ </span> : <span key={key}>{el}</span>
-      })
-      return arrows
-    } else return way
-  }
+        return way.length - 1 > key ? (
+          <span key={key}>{el} ➡️ </span>
+        ) : (
+          <span key={key}>{el}</span>
+        );
+      });
+      return arrows;
+    } else return way;
+  };
 
   return (
     <div>
@@ -185,7 +190,13 @@ const Graph = () => {
                         <span>{e}</span>
                       </div>
                     ) : (
-                      <input disabled value={e} type="text" key={j} className="input"/>
+                      <input
+                        disabled
+                        value={e}
+                        type="text"
+                        key={j}
+                        className="input"
+                      />
                     )
                   ) : abc.includes(e) ? (
                     <div className="lett" key={j}>
@@ -214,8 +225,7 @@ const Graph = () => {
               ? Object.keys(response).map((el, key) => {
                   return (
                     <div className="vers" key={key}>
-                      {getArrows(response[el]["way"])}{" "}
-                      ({response[el]["price"]})
+                      {getArrows(response[el]["way"])} ({response[el]["price"]})
                     </div>
                   );
                 })
