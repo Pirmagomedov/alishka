@@ -6,8 +6,8 @@ const Home = () => {
   const [input, setInput] = useState("");
   const [name, setName] = useState("");
   const [messages, setMessages] = useState([]);
-  const [a, setA] = useState("https://instagram-vpn.ru/img/1.jpg");
-  const [mus, setMus] = useState("https://instagram-vpn.ru/img/sir.mp3");
+  const [a, setA] = useState("https://instagram-vpn.ru/sources/1.jpg");
+  const [mus, setMus] = useState("https://instagram-vpn.ru/sources/sir.mp3");
   const [error, setError] = useState(false);
 
   const fil = useRef();
