@@ -1,3 +1,4 @@
+import { Button, Pagination } from "antd";
 import "./Home.css";
 import { useEffect, useState, useRef } from "react";
 
@@ -9,7 +10,9 @@ const Home = () => {
   const [a, setA] = useState("https://instagram-vpn.ru/sources/1.jpg");
   const [mus, setMus] = useState("https://instagram-vpn.ru/sources/sir.mp3");
   const [error, setError] = useState(false);
- 
+
+  const [page, setPage] = useState(1);
+
   const fil = useRef();
   const mp3 = useRef();
 
@@ -309,6 +312,18 @@ const Home = () => {
 
   return (
     <div>
+      <Button type="primary" onClick={() => alert(1234)}>GET</Button>
+      <Pagination itemRender={ (a,b,c) => {
+        console.log(a,b,c)
+
+        if (b === "prev") return <div>К началу</div>
+        if (b === "next") return <div>К концу</div>
+        if (a === page) return <div>Ты тута</div>
+
+        return (
+          <div style={{backgroundColor: "lime", borderRadius: "20px"}}>{c}</div>
+        )
+      }} defaultPageSize={1} defaultCurrent={page} onChange={(e) => setPage(e)} total={12}/>
       <input
         hidden
         name="track"
