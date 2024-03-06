@@ -11,7 +11,7 @@ const Home = () => {
   const [mus, setMus] = useState("https://instagram-vpn.ru/sources/sir.mp3");
   const [error, setError] = useState(false);
 
-  const [page, setPage] = useState(1); 
+  const [page, setPage] = useState(1);
 
   const fil = useRef();
   const mp3 = useRef();
@@ -313,17 +313,16 @@ const Home = () => {
   return (
     <div>
       <Button type="primary" onClick={() => alert(1234)}>GET</Button>
-      <Pagination itemRender={ (a,b,c) => {
-        console.log(a,b,c)
+      <Pagination hideOnSinglePage={true} simple={false} itemRender={(a, b, c) => {
 
-        if (b === "prev") return <div>К началу</div>
-        if (b === "next") return <div>К концу</div>
-        if (a === page) return <div>Ты тута</div>
+        if (b === "prev") return <div>{"<"}</div>
+        if (b === "next") return <div>{">"}</div>
+        if (a === page) return <div style={{"fontWeight": "bold", "color": "green"}}>{page}</div>
 
         return (
-          <div style={{backgroundColor: "lime", borderRadius: "20px"}}>{c}</div>
+          <div style={{}}>{c}</div>
         )
-      }} defaultPageSize={1} defaultCurrent={page} onChange={(e) => setPage(e)} total={12}/>
+      }} defaultPageSize={1} defaultCurrent={page} onChange={(e) => setPage(e)} total={12} />
       <input
         hidden
         name="track"
