@@ -11,7 +11,7 @@ const Home = () => {
   const [mus, setMus] = useState("https://instagram-vpn.ru/sources/sir.mp3");
   const [error, setError] = useState(false);
 
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(1); 
 
   const fil = useRef();
   const mp3 = useRef();
