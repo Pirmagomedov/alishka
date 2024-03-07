@@ -449,7 +449,7 @@ const Home = () => {
       <button onClick={() => start()}>Старт</button>
       <br />
       <button onClick={ali}>Отправить</button>
-      {/* <button onClick={clear}>Очистка смс</button> */}
+      <button onClick={clear}>Очистка смс</button>
       <div className="messages">
         {messages.map((message, ind) => {
           return (
