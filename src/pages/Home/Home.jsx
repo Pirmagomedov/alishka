@@ -1,6 +1,7 @@
 import { Button, Pagination } from "antd";
 import "./Home.css";
 import { useEffect, useState, useRef } from "react";
+import { useSearchParams, Link, useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [ws, setWs] = useState(null);
@@ -11,7 +12,22 @@ const Home = () => {
   const [mus, setMus] = useState("https://instagram-vpn.ru/sources/sir.mp3");
   const [error, setError] = useState(false);
 
-  const [page, setPage] = useState(1);
+  ////////////////////////////////////
+  //const params = useParams()
+
+  const navigate = useNavigate();
+
+  const [searchParams] = useSearchParams();
+
+  const [count] = useState(30);
+
+  const [page, setPage] = useState(
+    +searchParams.get("page") > 0 && +searchParams.get("page") < count + 1
+      ? +searchParams.get("page")
+      : 1
+  );
+
+  /////////////////////////////////////
 
   const fil = useRef();
   const mp3 = useRef();
@@ -230,12 +246,16 @@ const Home = () => {
   //getPokeymon()
 
   useEffect(() => {
+    if (+searchParams.get("page") < 1 || +searchParams.get("page") > count) {
+      navigate("?page=1");
+    }
+
     const ws = new WebSocket("wss://www.instagram-vpn.ru/ws/");
     ws.onopen = (obj) => {
-      console.log("Open!");
+      //console.log("Open!");
     };
-
     setWs(ws);
+    // eslint-disable-next-line
   }, []);
 
   const ali = () => {
@@ -312,17 +332,62 @@ const Home = () => {
 
   return (
     <div>
-      <Button type="primary" onClick={() => alert(1234)}>GET</Button>
-      <Pagination hideOnSinglePage={true} simple={false} itemRender={(a, b, c) => {
+      <Button type="primary" onClick={() => alert(1234)}>
+        GET
+      </Button>
+      <div style={{"display": "flex", "justifyContent": "center"}}>
+        <Pagination
+          hideOnSinglePage={true}
+          simple={false}
+          itemRender={(a, b, c) => {
+            if (b === "prev") {
+              return a === 0 ? (
+                <div style={{ color: "grey" }}>{"<"}</div>
+              ) : (
+                <Link to={`/?page=${+page - 1}`}>
+                  <div>{"<"}</div>
+                </Link>
+              );
+            }
+            if (b === "next") {
+              return a === page ? (
+                <div style={{ color: "grey" }}>{">"}</div>
+              ) : (
+                <Link to={`/?page=${+page + 1}`}>
+                  <div>{">"}</div>
+                </Link>
+              );
+            }
+            if (a === page)
+              return (
+                <div style={{ fontWeight: "bold", color: "green" }}>{page}</div>
+              );
 
-        if (b === "prev") return <div>{"<"}</div>
-        if (b === "next") return <div>{">"}</div>
-        if (a === page) return <div style={{"fontWeight": "bold", "color": "green"}}>{page}</div>
+            if (b === "jump-next")
+              return (
+                <Link to={`/?page=${page + 5}`}>
+                  <div>{">>"}</div>
+                </Link>
+              );
+            else if (b === "jump-prev")
+              return (
+                <Link to={`/?page=${page - 5}`}>
+                  <div>{"<<"}</div>
+                </Link>
+              );
 
-        return (
-          <div style={{}}>{c}</div>
-        )
-      }} defaultPageSize={1} defaultCurrent={page} onChange={(e) => setPage(e)} total={12} />
+            return (
+              <Link to={`/?page=${a}`}>
+                <div>{a}</div>
+              </Link>
+            );
+          }}
+          defaultPageSize={1}
+          current={page}
+          onChange={(e) => setPage(e)}
+          total={count}
+        />
+      </div>
       <input
         hidden
         name="track"
