@@ -272,13 +272,13 @@ const Home = () => {
     );
   };
 
-  // const clear = () => {
-  //   ws.send(
-  //     JSON.stringify({
-  //       type: "clear"
-  //     })
-  //   );
-  // };
+  const clear = () => {
+    ws.send(
+      JSON.stringify({
+        type: "clear"
+      })
+    );
+  };
 
   if (ws) {
     ws.onmessage = (obj) => {
