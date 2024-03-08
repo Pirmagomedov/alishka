@@ -360,7 +360,7 @@ const Home = () => {
             }
             if (a === page)
               return (
-                <div style={{ fontWeight: "bold", color: "green" }}>{page}</div>
+                <div style={{ fontWeight: "bold", color: "green","border": "none !important", "outline": "none !important"}}>{page}</div>
               );
 
             if (b === "jump-next")
