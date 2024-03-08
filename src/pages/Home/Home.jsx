@@ -377,9 +377,11 @@ const Home = () => {
               );
 
             return (
+              <div styles={{"border": "none !important"}}>
               <Link to={`/?page=${a}`}>
                 <div>{a}</div>
               </Link>
+              </div>
             );
           }}
           defaultPageSize={1}
