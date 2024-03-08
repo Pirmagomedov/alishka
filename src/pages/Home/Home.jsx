@@ -377,7 +377,7 @@ const Home = () => {
               );
 
             return (
-              <div styles={{"border": "none !important"}}>
+              <div style={{"border": "none !important", "outline": "none !important"}}>
               <Link to={`/?page=${a}`}>
                 <div>{a}</div>
               </Link>
