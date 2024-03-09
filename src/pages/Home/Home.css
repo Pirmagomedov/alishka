@@ -14,3 +14,26 @@
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
 }
+
+.ant-pagination li {
+  border-radius: 50% !important;
+}
+
+.ant-pagination li:hover {
+  background-color: transparent !important;
+}
+
+.ant-pagination-item-active {
+  border: 1px solid black !important;
+  border-radius: 50% !important;
+  font-weight: normal !important;
+}
+
+.pagB {
+  color: black;
+  font-weight: bold;
+}
+
+.gr {
+  color: #bdbdbd;
+}

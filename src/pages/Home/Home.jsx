@@ -275,7 +275,7 @@ const Home = () => {
   const clear = () => {
     ws.send(
       JSON.stringify({
-        type: "clear"
+        type: "clear",
       })
     );
   };
@@ -335,52 +335,62 @@ const Home = () => {
       <Button type="primary" onClick={() => alert(1234)}>
         GET
       </Button>
-      <div style={{"display": "flex", "justifyContent": "center"}}>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <Pagination
           hideOnSinglePage={true}
           simple={false}
           itemRender={(a, b, c) => {
             if (b === "prev") {
               return a === 0 ? (
-                <div style={{ color: "grey" }}>{"<"}</div>
+                <div className="pagB gr">
+                  {"<"}
+                </div>
               ) : (
                 <Link to={`/?page=${+page - 1}`}>
-                  <div>{"<"}</div>
+                  <div className="pagB">
+                    {"<"}
+                  </div>
                 </Link>
               );
             }
             if (b === "next") {
               return a === page ? (
-                <div style={{ color: "grey" }}>{">"}</div>
+                <div className="pagB gr">
+                  {">"}
+                </div>
               ) : (
                 <Link to={`/?page=${+page + 1}`}>
-                  <div>{">"}</div>
+                  <div className="pagB">
+                    {">"}
+                  </div>
                 </Link>
               );
             }
             if (a === page)
               return (
-                <div style={{fontWeight: "bold", color: "green","border": "2px solid black", "outline": "none !important"}}>{page}</div>
+                <div>
+                  {page}
+                </div>
               );
 
             if (b === "jump-next")
               return (
                 <Link to={`/?page=${page + 5}`}>
-                  <div>{">>"}</div>
+                  <div className="pagB">{"..."}</div>
                 </Link>
               );
             else if (b === "jump-prev")
               return (
                 <Link to={`/?page=${page - 5}`}>
-                  <div>{"<<"}</div>
+                  <div className="pagB">{"..."}</div>
                 </Link>
               );
 
             return (
-              <div style={{"border": "none !important", "outline": "none !important"}}>
-              <Link to={`/?page=${a}`}>
-                <div>{a}</div>
-              </Link>
+              <div>
+                <Link to={`/?page=${a}`}>
+                  <div>{a}</div>
+                </Link>
               </div>
             );
           }}
