@@ -1,6 +1,7 @@
-import { Button, Pagination } from "antd";
+import { Button } from "antd";
+import { Pagination as Pagin, PaginationItem, Skeleton } from "@mui/material";
 import "./Home.css";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { useSearchParams, Link, useNavigate } from "react-router-dom";
 
 const Home = () => {
@@ -19,13 +20,27 @@ const Home = () => {
 
   const [searchParams] = useSearchParams();
 
-  const [count] = useState(30);
+  const [count] = useState(50);
 
   const [page, setPage] = useState(
     +searchParams.get("page") > 0 && +searchParams.get("page") < count + 1
       ? +searchParams.get("page")
       : 1
   );
+
+  const [items, setItems] = useState([]);
+  const [disable, setDisable] = useState(false);
+
+  const [users, setUsers] = useState([]);
+  const re = useRef(users);
+
+  const [allow, setAllow] = useState(true);
+  const [pag, setPag] = useState(1);
+  const pef = useRef(pag)
+
+  const [isScrolledToBottom] = useState(false);
+  const isScrolledRef = useRef(isScrolledToBottom);
+  const hasLoggedToConsoleRef = useRef(false);
 
   /////////////////////////////////////
 
@@ -245,10 +260,73 @@ const Home = () => {
 
   //getPokeymon()
 
+  const getData = async (page) => {
+    const response = await fetch(
+      `https://jsonplaceholder.typicode.com/comments?_start=${
+        (page - 1) * 10
+      }&_limit=10`
+    );
+    const data = await response.json();
+    setItems(data);
+    setDisable(false);
+  };
+
+  const getComments = async (pag) => {
+    const response = await fetch(
+      `https://jsonplaceholder.typicode.com/comments?_start=${
+        (pag - 1) * 15
+      }&_limit=15`
+    );
+    const data = await response.json();
+
+    console.log(data)
+
+    re.current = [...re.current, ...data]
+    setUsers([...re.current, ...data])
+  };
+
+  const handleScroll = () => {
+    const scrollHeight = document.documentElement.scrollHeight;
+    const scrollTop = window.pageYOffset;
+    const windowHeight = window.innerHeight;
+
+    const bottom = scrollHeight - scrollTop === windowHeight;
+
+    if (bottom) {
+      isScrolledRef.current = true;
+    } else {
+      isScrolledRef.current = false;
+
+      // Проверяем, достигли ли последних 150 пикселей скролла и логируем только один раз
+      if (
+        scrollHeight - scrollTop <= windowHeight + 150 &&
+        !hasLoggedToConsoleRef.current
+      ) {
+        console.log("Scrolled to the last 150 pixels");
+        hasLoggedToConsoleRef.current = true;
+
+        // re.current = [1,2,3,4,5,6,7,8,9, ...re.current]
+        // setUsers(re.current)
+
+        getComments(pef.current)
+
+        pef.current = pef.current + 1
+        setPag(pef.current)
+
+      } else if (scrollHeight - scrollTop > windowHeight + 150) {
+        hasLoggedToConsoleRef.current = false;
+      }
+    }
+  };
+
   useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
     if (+searchParams.get("page") < 1 || +searchParams.get("page") > count) {
       navigate("?page=1");
     }
+
+    getData(page);
 
     const ws = new WebSocket("wss://www.instagram-vpn.ru/ws/");
     ws.onopen = (obj) => {
@@ -330,76 +408,145 @@ const Home = () => {
     setMus(music);
   };
 
+  // const renderLink = (target, content) => {
+  //   return <Link to={`/?page=${target}`}>{content}</Link>;
+  // };
+
+  const renderItem = ({ page, onClick, disabled, type, selected }, current) => {
+    const hoc = (child, page) => {
+      return (
+        <Link
+          onClick={page !== current ? onClick : () => {}}
+          to={`/?page=${page}`}
+        >
+          {child}
+        </Link>
+      );
+    };
+
+    const item = () => {
+      return (
+        <PaginationItem
+          className={selected ? "pag-item" : null}
+          page={page}
+          disabled={disabled}
+          type={type}
+          color={"secondary"}
+          variant="outlined"
+        />
+      );
+    };
+
+    if (disabled || type.includes("ellipsis")) return item();
+    return hoc(item(), page);
+  };
+
+  const renderSkeleton = () => {
+    return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((e) => (
+      <div className="skelet">
+        <Skeleton
+          className="skelet-span"
+          animation="wave"
+          width="80%"
+          key={e}
+        />
+        <Skeleton
+          className="skelet-span"
+          animation="wave"
+          width="80%"
+          key={e}
+        />
+        <Skeleton
+          className="skelet-span"
+          animation="wave"
+          width="80%"
+          key={e}
+        />
+        <Skeleton
+          className="skelet-span"
+          animation="wave"
+          width="80%"
+          key={e}
+        />
+      </div>
+    ));
+  };
+
   return (
     <div>
       <Button type="primary" onClick={() => alert(1234)}>
         GET
       </Button>
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <Pagination
-          hideOnSinglePage={true}
-          simple={false}
-          itemRender={(a, b, c) => {
-            if (b === "prev") {
-              return a === 0 ? (
-                <div className="pagB gr">
-                  {"<"}
-                </div>
-              ) : (
-                <Link to={`/?page=${+page - 1}`}>
-                  <div className="pagB">
-                    {"<"}
-                  </div>
-                </Link>
-              );
-            }
-            if (b === "next") {
-              return a === page ? (
-                <div className="pagB gr">
-                  {">"}
-                </div>
-              ) : (
-                <Link to={`/?page=${+page + 1}`}>
-                  <div className="pagB">
-                    {">"}
-                  </div>
-                </Link>
-              );
-            }
-            if (a === page)
+      <div className="comments">
+        {items.length !== 0
+          ? items.map((comment) => {
               return (
-                <div>
-                  {page}
+                <div className="comments-card" key={comment.id}>
+                  {/* <div className="comments-id">{comment.id}</div> */}
+                  <div className="comments-email">
+                    <span>Email:</span> {comment.email}
+                  </div>
+                  <div className="comments-name">
+                    <span>Name:</span> {comment.name}
+                  </div>
+                  <div className="comments-body">
+                    <span>Comment:</span> {comment.body}
+                  </div>
                 </div>
               );
+            })
+          : renderSkeleton()}
+      </div>
+      <br />
+      <Pagin
+        disabled={disable}
+        className="pagin"
+        onChange={(_, page) => {
+          window.scrollTo({
+            top: 0,
+          });
+          setItems([]);
+          setDisable(true);
+          getData(page);
+          setPage(page);
+        }}
+        page={page}
+        count={count}
+        renderItem={(item) => renderItem(item, page)}
+      />
+      <br />
+      <br />
+      {/* <div style={{ display: "flex", justifyContent: "center" }}>
+        <Pagination
+          itemRender={(a, b) => {
+            if (b === "prev")
+              if (a === 0) return <div className="pagB gr">{"<"}</div>;
+              else
+                return <div className="pagB">{renderLink(page - 1, "<")}</div>;
+
+            if (b === "next")
+              if (a === page) return <div className="pagB gr">{">"}</div>;
+              else
+                return <div className="pagB">{renderLink(page + 1, ">")}</div>;
+
+            if (a === page) return <div>{page}</div>;
 
             if (b === "jump-next")
-              return (
-                <Link to={`/?page=${page + 5}`}>
-                  <div className="pagB">{"..."}</div>
-                </Link>
-              );
-            else if (b === "jump-prev")
-              return (
-                <Link to={`/?page=${page - 5}`}>
-                  <div className="pagB">{"..."}</div>
-                </Link>
-              );
+              if (count - page >= 5) return renderLink(page + 5, "...");
+              else return null;
 
-            return (
-              <div>
-                <Link to={`/?page=${a}`}>
-                  <div>{a}</div>
-                </Link>
-              </div>
-            );
+            if (b === "jump-prev")
+              if (page > 5) return renderLink(page - 5, "...");
+              else return null;
+
+            return renderLink(a, a);
           }}
           defaultPageSize={1}
           current={page}
-          onChange={(e) => setPage(e)}
+          onChange={(page) => setPage(page)}
           total={count}
         />
-      </div>
+      </div> */}
       <input
         hidden
         name="track"
@@ -478,6 +625,22 @@ const Home = () => {
               : {message.message}
             </div>
           );
+        })}
+      </div>
+      <div>
+        {re.current.map((comment) => {
+          return <div className="comments-card" key={comment.id}>
+          {/* <div className="comments-id">{comment.id}</div> */}
+          <div className="comments-email">
+            <span>Email:</span> {comment.email}
+          </div>
+          <div className="comments-name">
+            <span>Name:</span> {comment.name}
+          </div>
+          <div className="comments-body">
+            <span>Comment:</span> {comment.body}
+          </div>
+        </div>
         })}
       </div>
     </div>

@@ -30,10 +30,68 @@
 }
 
 .pagB {
-  color: black;
+  color: black !important;
   font-weight: bold;
 }
 
+a:-webkit-any-link {
+  color: black;
+  border-radius: 50%;
+}
+
+a {
+  width: 100%;
+  box-sizing: border-box;
+  display: inline-block;
+  text-decoration: none;
+}
+
 .gr {
-  color: #bdbdbd;
+  color: #bdbdbd !important;
+}
+
+.pagin {
+  display: flex;
+  justify-content: center;
+}
+
+li {
+  user-select: none;
+}
+
+.pag-item {
+  border: 2px solid rgb(167, 167, 167) !important;
+  transition: .2s ease-in !important;
+  color: white !important;
+  background-color: rgb(167, 167, 167) !important;
+}
+
+.comments {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.comments-card {
+  font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 15px;
+  background-color: rgb(245, 245, 245);
+  border-radius: 20px;
+  padding: 12px;
+  width: 80%;
+  font-size: 12px;
+}
+
+.comments-card span {
+  font-weight: bold;
+}
+
+.comments-id {
+  font-weight: bold;
+}
+
+.skelet {
+  margin-bottom: 15px;
+}
+
+.skelet-span {
+  height: 20px !important;
 }
