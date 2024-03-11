@@ -95,3 +95,10 @@ li {
 .skelet-span {
   height: 20px !important;
 }
+
+.spinner {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  width: 80%;
+}

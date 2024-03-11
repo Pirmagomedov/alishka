@@ -1,7 +1,7 @@
-import { Button } from "antd";
+import { Button, Spin } from "antd";
 import { Pagination as Pagin, PaginationItem, Skeleton } from "@mui/material";
 import "./Home.css";
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useSearchParams, Link, useNavigate } from "react-router-dom";
 
 const Home = () => {
@@ -13,33 +13,33 @@ const Home = () => {
   const [mus, setMus] = useState("https://instagram-vpn.ru/sources/sir.mp3");
   const [error, setError] = useState(false);
 
-  ////////////////////////////////////
-  //const params = useParams()
-
+  // navigate func
   const navigate = useNavigate();
 
+  // params tools
   const [searchParams] = useSearchParams();
 
+  // pages count
   const [count] = useState(50);
 
+  // Current page
   const [page, setPage] = useState(
     +searchParams.get("page") > 0 && +searchParams.get("page") < count + 1
       ? +searchParams.get("page")
       : 1
   );
 
+  // Pagination
   const [items, setItems] = useState([]);
   const [disable, setDisable] = useState(false);
 
+  // Infinite scroll
   const [users, setUsers] = useState([]);
   const re = useRef(users);
 
-  const [allow, setAllow] = useState(true);
   const [pag, setPag] = useState(1);
-  const pef = useRef(pag)
+  const pef = useRef(pag);
 
-  const [isScrolledToBottom] = useState(false);
-  const isScrolledRef = useRef(isScrolledToBottom);
   const hasLoggedToConsoleRef = useRef(false);
 
   /////////////////////////////////////
@@ -272,50 +272,36 @@ const Home = () => {
   };
 
   const getComments = async (pag) => {
+    const total = 10;
+
     const response = await fetch(
       `https://jsonplaceholder.typicode.com/comments?_start=${
-        (pag - 1) * 15
-      }&_limit=15`
+        (pag - 1) * total
+      }&_limit=${total}`
     );
     const data = await response.json();
 
-    console.log(data)
+    pef.current = pef.current + 1;
+    setPag(pef.current);
 
-    re.current = [...re.current, ...data]
-    setUsers([...re.current, ...data])
+    re.current = [...re.current, ...data];
+    setUsers([...re.current, ...data]);
+
+    hasLoggedToConsoleRef.current = false;
   };
 
   const handleScroll = () => {
     const scrollHeight = document.documentElement.scrollHeight;
-    const scrollTop = window.pageYOffset;
+    const scrollTop = window.scrollY;
     const windowHeight = window.innerHeight;
 
-    const bottom = scrollHeight - scrollTop === windowHeight;
+    if (
+      scrollHeight - scrollTop <= windowHeight + 150 &&
+      !hasLoggedToConsoleRef.current
+    ) {
+      hasLoggedToConsoleRef.current = true;
 
-    if (bottom) {
-      isScrolledRef.current = true;
-    } else {
-      isScrolledRef.current = false;
-
-      // Проверяем, достигли ли последних 150 пикселей скролла и логируем только один раз
-      if (
-        scrollHeight - scrollTop <= windowHeight + 150 &&
-        !hasLoggedToConsoleRef.current
-      ) {
-        console.log("Scrolled to the last 150 pixels");
-        hasLoggedToConsoleRef.current = true;
-
-        // re.current = [1,2,3,4,5,6,7,8,9, ...re.current]
-        // setUsers(re.current)
-
-        getComments(pef.current)
-
-        pef.current = pef.current + 1
-        setPag(pef.current)
-
-      } else if (scrollHeight - scrollTop > windowHeight + 150) {
-        hasLoggedToConsoleRef.current = false;
-      }
+      getComments(pef.current);
     }
   };
 
@@ -474,7 +460,7 @@ const Home = () => {
 
   return (
     <div>
-      <Button type="primary" onClick={() => alert(1234)}>
+      <Button type="primary">
         GET
       </Button>
       <div className="comments">
@@ -629,19 +615,24 @@ const Home = () => {
       </div>
       <div>
         {re.current.map((comment) => {
-          return <div className="comments-card" key={comment.id}>
-          {/* <div className="comments-id">{comment.id}</div> */}
-          <div className="comments-email">
-            <span>Email:</span> {comment.email}
-          </div>
-          <div className="comments-name">
-            <span>Name:</span> {comment.name}
-          </div>
-          <div className="comments-body">
-            <span>Comment:</span> {comment.body}
-          </div>
-        </div>
+          return (
+            <div className="comments-card" key={comment.id}>
+              {/* <div className="comments-id">{comment.id}</div> */}
+              <div className="comments-email">
+                <span>Email:</span> {comment.email}
+              </div>
+              <div className="comments-name">
+                <span>Name:</span> {comment.name}
+              </div>
+              <div className="comments-body">
+                <span>Comment:</span> {comment.body}
+              </div>
+            </div>
+          );
         })}
+        <div className="spinner">
+          <Spin />
+        </div>
       </div>
     </div>
   );
