@@ -13,6 +13,81 @@ const Home = () => {
   const [mus, setMus] = useState("https://instagram-vpn.ru/sources/sir.mp3");
   const [error, setError] = useState(false);
 
+  const [started, setStarted] = useState(false);
+  const intRef = useRef();
+  const na = useRef(0);
+  const [time, setTime] = useState("00:00:00");
+
+  const getZero = (length) => {
+    return length === 1 ? "0" : "";
+  };
+
+  const getTime = () => {
+    const months = {
+      0: "Января",
+      1: "Февраля",
+      2: "Марта",
+      3: "Апреля",
+      4: "Мая",
+      5: "Июня",
+      6: "Июля",
+      7: "Августа",
+      8: "Сентября",
+      9: "Октября",
+      10: "Ноября",
+      11: "Декабоя",
+    };
+
+    const tim = new Date();
+    const hours = tim.getHours();
+    const minutes = tim.getMinutes();
+    const seconds = tim.getSeconds();
+    const month = tim.getMonth();
+    const days = tim.getDay();
+    const year = tim.getFullYear();
+
+    return `${year}, ${days} ${months[month]}, ${
+      getZero(2 - hours.toString().length) + hours
+    }:${getZero(2 - minutes.toString().length) + minutes}:${
+      getZero(2 - seconds.toString().length) + seconds
+    }`;
+  };
+
+  const [date, setDate] = useState(getTime());
+
+  const reset = () => {
+    clearInterval(intRef.current);
+    setTime("00:00:00");
+    setStarted(false);
+    na.current = false;
+  };
+
+  const startT = () => {
+    setStarted(!started);
+
+    if (started) {
+      clearInterval(intRef.current);
+    } else {
+      clearInterval(intRef.current);
+
+      intRef.current = setInterval(() => {
+        setTime(
+          `${
+            ((+na.current + 100) / 1000 - (((+na.current + 100) / 1000) % 60)) /
+            60
+          }:${
+            getZero(
+              2 -
+                (((+na.current + 100) / 1000).toFixed(0) % 60).toString().length
+            ) +
+            (((+na.current + 100) / 1000).toFixed(0) % 60)
+          }`
+        );
+        na.current = +na.current + 100;
+      }, 100);
+    }
+  };
+
   // navigate func
   const navigate = useNavigate();
 
@@ -308,6 +383,10 @@ const Home = () => {
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
 
+    setInterval(() => {
+      setDate(getTime())
+    }, 1000)
+
     if (+searchParams.get("page") < 1 || +searchParams.get("page") > count) {
       navigate("?page=1");
     }
@@ -459,10 +538,21 @@ const Home = () => {
   };
 
   return (
-    <div>
-      <Button type="primary">
-        GET
-      </Button>
+    <>
+      <div className="timer">
+        <div className="timer-card">
+          <Button type="primary" onClick={startT}>
+            {started ? "Стоп" : "Старт"}
+          </Button>
+          <Button type="primary" onClick={reset}>
+            Сброс
+          </Button>
+        </div>
+        <div className="timer-label">
+          <span>{time}</span>
+        </div>
+      </div>
+      <div className="time">{date}</div>
       <div className="comments">
         {items.length !== 0
           ? items.map((comment) => {
@@ -634,7 +724,7 @@ const Home = () => {
           <Spin />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -102,3 +102,22 @@ li {
   margin: 20px 0;
   width: 80%;
 }
+
+.timer {
+  width: 170px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column; 
+}
+
+.timer-card {
+  display: flex;
+  justify-content: space-between;
+}
+
+.timer-label {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 10px;
+}
