@@ -15,7 +15,7 @@ const Home = () => {
 
   const [started, setStarted] = useState(false);
   const intRef = useRef();
-  const na = useRef(0);
+  const na = useRef(false);
   const [time, setTime] = useState("00:00:00");
 
   const getZero = (length) => {
@@ -43,7 +43,7 @@ const Home = () => {
     const minutes = tim.getMinutes();
     const seconds = tim.getSeconds();
     const month = tim.getMonth();
-    const days = tim.getDay();
+    const days = tim.getDate();
     const year = tim.getFullYear();
 
     return `${year}, ${days} ${months[month]}, ${
@@ -71,19 +71,19 @@ const Home = () => {
       clearInterval(intRef.current);
 
       intRef.current = setInterval(() => {
+        na.current = +na.current + 100;
         setTime(
           `${
-            ((+na.current + 100) / 1000 - (((+na.current + 100) / 1000) % 60)) /
-            60
+            getZero(parseInt((((+na.current / 1000 - ((+na.current / 1000) % 60)) / 60) - ((+na.current / 1000 - ((+na.current / 1000) % 60)) / 60) % 60) / 60 % 24).toString().length) +
+            (((+na.current / 1000 - ((+na.current / 1000) % 60)) / 60) - ((+na.current / 1000 - ((+na.current / 1000) % 60)) / 60) % 60) / 60 % 24
           }:${
-            getZero(
-              2 -
-                (((+na.current + 100) / 1000).toFixed(0) % 60).toString().length
-            ) +
-            (((+na.current + 100) / 1000).toFixed(0) % 60)
+            getZero(2 - parseInt((+na.current / 1000 - ((+na.current / 1000) % 60)) / 60 % 60).toString().length) +
+            (+na.current / 1000 - ((+na.current / 1000) % 60)) / 60 % 60
+          }:${
+            getZero(2 - parseInt((+na.current / 1000) % 60).toString().length) +
+            (parseInt(+na.current / 1000) % 60)
           }`
         );
-        na.current = +na.current + 100;
       }, 100);
     }
   };
@@ -384,8 +384,8 @@ const Home = () => {
     window.addEventListener("scroll", handleScroll);
 
     setInterval(() => {
-      setDate(getTime())
-    }, 1000)
+      setDate(getTime());
+    }, 1000);
 
     if (+searchParams.get("page") < 1 || +searchParams.get("page") > count) {
       navigate("?page=1");
