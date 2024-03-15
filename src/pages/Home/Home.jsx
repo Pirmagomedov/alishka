@@ -371,7 +371,7 @@ const Home = () => {
     const windowHeight = window.innerHeight;
 
     if (
-      scrollHeight - scrollTop <= windowHeight + 150 &&
+      scrollHeight - scrollTop <= windowHeight + 450 &&
       !hasLoggedToConsoleRef.current
     ) {
       hasLoggedToConsoleRef.current = true;
