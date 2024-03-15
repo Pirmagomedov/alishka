@@ -371,7 +371,7 @@ const Home = () => {
     const windowHeight = window.innerHeight;
 
     if (
-      scrollHeight - scrollTop <= windowHeight + 450 &&
+      scrollHeight - scrollTop <= windowHeight + 200 &&
       !hasLoggedToConsoleRef.current
     ) {
       hasLoggedToConsoleRef.current = true;
@@ -507,35 +507,32 @@ const Home = () => {
   };
 
   const renderSkeleton = () => {
-    return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((e) => (
-      <div className="skelet">
+    return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((e, index) => {
+      return (
+      <div className="skelet" key={index}>
         <Skeleton
           className="skelet-span"
           animation="wave"
           width="80%"
-          key={e}
         />
         <Skeleton
           className="skelet-span"
           animation="wave"
           width="80%"
-          key={e}
         />
         <Skeleton
           className="skelet-span"
           animation="wave"
           width="80%"
-          key={e}
         />
         <Skeleton
           className="skelet-span"
           animation="wave"
           width="80%"
-          key={e}
         />
       </div>
-    ));
-  };
+    )}) 
+  }
 
   return (
     <>
@@ -555,9 +552,9 @@ const Home = () => {
       <div className="time">{date}</div>
       <div className="comments">
         {items.length !== 0
-          ? items.map((comment) => {
+          ? items.map((comment, index) => {
               return (
-                <div className="comments-card" key={comment.id}>
+                <div className="comments-card" key={index}>
                   {/* <div className="comments-id">{comment.id}</div> */}
                   <div className="comments-email">
                     <span>Email:</span> {comment.email}
