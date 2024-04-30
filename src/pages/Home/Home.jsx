@@ -496,7 +496,7 @@ const Home = () => {
           page={page}
           disabled={disabled}
           type={type}
-          color={"secondary"}
+          color={"secondary"} 
           variant="outlined"
         />
       );
