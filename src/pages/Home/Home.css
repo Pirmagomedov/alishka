@@ -121,3 +121,7 @@ li {
   font-size: 22px;
   margin-bottom: 10px;
 }
+
+.range {
+  width: 300px;
+}

@@ -13,6 +13,9 @@ const Home = () => {
   const [mus, setMus] = useState("https://instagram-vpn.ru/sources/sir.mp3");
   const [error, setError] = useState(false);
 
+  const [before, setBefore] = useState(500);
+  const [after, setAfter] = useState(500);
+
   const [started, setStarted] = useState(false);
   const intRef = useRef();
   const na = useRef(false);
@@ -536,6 +539,22 @@ const Home = () => {
 
   return (
     <>
+      <div className="trading">
+        <input value={before} className="range" min="1" max="1000" type="range" onChange={(a) => setBefore(a.target.value)}/>
+        <input inputMode="decimal" style={{width: "30px"}} value={before} onChange={(a) => setBefore(+a.target.value)}/>
+        <br />
+        <input value={after} className="range" min="1" max="1000" type="range" onChange={(a) => setAfter(a.target.value)}/>
+        <input min="1" inputMode="decimal" style={{width: "30px"}} value={after} onChange={(a) => setAfter(+a.target.value)}/>
+        { +after >= +before ? 
+          <div style={{color: "green", fontWeight: "bold", fontFamily: "Arial", fontSize: 22}}>
+            {`${Math.abs((after / before * 100 - 100).toFixed(2))} %` }
+          </div>
+        : 
+          <div style={{color: "red", fontWeight: "bold", fontFamily: "Arial", fontSize: 22}}>
+            {`${Math.abs((after / before * 100 - 100).toFixed(2))} %` }
+          </div>
+        }
+      </div>
       <div className="timer">
         <div className="timer-card">
           <Button type="primary" onClick={startT}>
