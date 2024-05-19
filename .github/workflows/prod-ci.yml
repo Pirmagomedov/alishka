@@ -6,11 +6,6 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-        
-    steps:
-      - name: Set up environment variable
-        run: echo "A=${{secrets.SSH_KEY}}" >> $GITHUB_ENV
-    
       -  name: Checkout
          uses: actions/checkout@v4
       
@@ -29,7 +24,7 @@ jobs:
          uses: Pendect/action-rsyncer@v1.1.0
          
          env:
-           DEPLOY_KEY: ${{env.A}}
+           DEPLOY_KEY: ${{secrets.SSH_KEY}}
            
          with:
            flags: "-avc --delete"
