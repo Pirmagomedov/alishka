@@ -4,6 +4,7 @@ import "./Home.css";
 import { useEffect, useState, useRef } from "react";
 import { useSearchParams, Link, useNavigate } from "react-router-dom";
 
+
 const Home = () => {
   const [ws, setWs] = useState(null);
   const [input, setInput] = useState("");
