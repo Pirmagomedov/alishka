@@ -22,13 +22,23 @@ jobs:
            npm install
            npm run build
 
-      -  name: Deployment on server
-         uses: Pendect/action-rsyncer@v1.1.0
-
-         env:
-           DEPLOY_KEY: ${{secrets.SSH_KEY}}
-           
-         with:
-           #flags: "-avc --delete"
-           src: "/build/"
-           dest: "root@'31.128.47.179':/var/www/html/"     
+      - name: rsync deployments
+        uses: burnett01/rsync-deployments@5.2
+        with:
+           switches: -avzr --delete
+           path: buld/
+           remote_path: /var/www/html/
+           remote_host: nainbot.ru
+           remote_user: root
+           remote_password: Alimirzaaa00505!
+           remote_key: ${{ secrets.SSH_KEY }}
+#      -  name: Deployment on server
+#         uses: Pendect/action-rsyncer@v1.1.0
+#
+#         env:
+#           DEPLOY_KEY: ${{secrets.SSH_KEY}}
+#           
+#         with:
+#           #flags: "-avc --delete"
+#           src: "/build/"
+#           dest: "root@'31.128.47.179':/var/www/html/"     
