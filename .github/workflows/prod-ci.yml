@@ -28,7 +28,7 @@ jobs:
            switches: -avzr --delete
            path: buld/
            remote_path: /var/www/html/
-           remote_host: nainbot.ru
+           remote_host: 31.128.47.179
            remote_user: root
            remote_password: Alimirzaaa00505!
            remote_key: ${{ secrets.SSH_KEY }}
