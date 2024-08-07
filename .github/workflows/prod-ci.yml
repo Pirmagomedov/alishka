@@ -29,6 +29,6 @@ jobs:
            DEPLOY_KEY: ${{secrets.SSH_KEY}}
            
          with:
-           flags: "-avc --delete"
+           #flags: "-avc --delete"
            src: "/build/"
-           dest: "root@31.128.47.179:/var/www/html/"     
+           dest: "root@'31.128.47.179':/var/www/html/"     
