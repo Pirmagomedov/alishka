@@ -546,6 +546,7 @@ const Home = () => {
         <br />
         <input value={after} className="range" min="1" max="1000" type="range" onChange={(a) => setAfter(a.target.value)}/>
         <input min="1" inputMode="decimal" style={{width: "30px"}} value={after} onChange={(a) => setAfter(+a.target.value)}/>
+        1
         { +after >= +before ? 
           <div style={{color: "green", fontWeight: "bold", fontFamily: "Arial", fontSize: 22}}>
             {`${Math.abs((after / before * 100 - 100).toFixed(2))} %` }
