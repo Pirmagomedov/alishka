@@ -31,4 +31,4 @@ jobs:
          with:
            flags: "-avc --delete"
            src: "/build/"
-           dest: "{{asecrets.SSH_USER}}@{{secrets.SSH_HOST}}:/var/www/html/"
+           dest: "'{{asecrets.SSH_USER}}'@'{{secrets.SSH_HOST}}':'{{secrets.SSH_PORT}}'/var/www/html/"
