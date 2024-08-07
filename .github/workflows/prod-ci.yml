@@ -18,7 +18,7 @@ jobs:
            
       -  name: Build Project
          run: |
-           sudo apt-get install rsync
+           sudo apt install rsync
            npm install
            npm run build
            
@@ -31,4 +31,4 @@ jobs:
          with:
            flags: "-avc --delete"
            src: "/build/"
-           dest: "${{secrets.SSH_USER}}@'${{secrets.SSH_HOST}}':/var/www/html/"
+           dest: "${{secrets.SSH_USER}}@'${{secrets.SSH_HOST}}':${{secrets.SSH_PORT}}/var/www/html/"
