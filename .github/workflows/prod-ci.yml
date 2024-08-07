@@ -21,17 +21,7 @@ jobs:
            sudo apt-get install rsync
            npm install
            npm run build
-
-#      - name: rsync deployments
-#        uses: burnett01/rsync-deployments@5.2
-#        with:
-#           switches: -avzr --delete
-#           path: build/
-#           remote_path: /var/www/html/
-#           remote_host: 31.128.47.179
-#           remote_user: root
-#           remote_password: Alimirzaaa00505!1
-#           remote_key: ${{ secrets.SSH_KEY }}
+           
       -  name: Deployment on server
          uses: Pendect/action-rsyncer@v1.1.0
 
@@ -41,4 +31,4 @@ jobs:
          with:
            flags: "-avc --delete"
            src: "/build/"
-           dest: "root@'31.128.47.179':/var/www/html/"     
+           dest: "{{asecrets.SSH_USER}}@{{secrets.SSH_HOST}}:{{secrets.SSH_PORT}}/var/www/html/"
