@@ -539,7 +539,7 @@ const Home = () => {
   }
 
   return (
-    <>
+    <>123
       <div className="trading">
         <input value={before} className="range" min="1" max="1000" type="range" onChange={(a) => setBefore(a.target.value)}/>
         <input inputMode="decimal" style={{width: "30px"}} value={before} onChange={(a) => setBefore(+a.target.value)}/>
