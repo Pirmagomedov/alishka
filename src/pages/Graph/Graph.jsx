@@ -84,7 +84,7 @@ const Graph = () => {
       const data = await response.json();
       setResponse(data.data);
     };
-    alishka("https://nainbot.ru:5000/generate-graph");
+    alishka("https://nainbot.ru/api/generate-graph");
   };
 
   const renderOptions = () => {
