@@ -3,6 +3,7 @@ import { Pagination as Pagin, PaginationItem, Skeleton } from "@mui/material";
 import "./Home.css";
 import { useEffect, useState, useRef } from "react";
 import { useSearchParams, Link, useNavigate } from "react-router-dom";
+import Graph from "../Graph/Graph";
 
 
 const Home = () => {
@@ -10,8 +11,8 @@ const Home = () => {
   const [input, setInput] = useState("");
   const [name, setName] = useState("");
   const [messages, setMessages] = useState([]);
-  const [a, setA] = useState("https://instagram-vpn.ru/sources/1.jpg");
-  const [mus, setMus] = useState("https://instagram-vpn.ru/sources/sir.mp3");
+  const [a, setA] = useState("https://nainbot.ru/sources/1.jpg");
+  const [mus, setMus] = useState("https://nainbot.ru/sources/sir.mp3");
   const [error, setError] = useState(false);
 
   const [before, setBefore] = useState(500);
@@ -447,7 +448,7 @@ const Home = () => {
         const form = new FormData();
         form.append("ava", fil.current.files[0]);
 
-        await fetch("https://instagram-vpn.ru/api/add_ava", {
+        await fetch("https://nainbot.ru/api/add_ava", {
           method: "POST",
           body: form,
         });
@@ -468,7 +469,7 @@ const Home = () => {
     let form = new FormData();
     form.append("track", mp3.current.files[0]);
 
-    await fetch("https://instagram-vpn.ru/api/add_track", {
+    await fetch("https://nainbot.ru/api/add_track", {
       method: "POST",
       body: form,
     });
@@ -540,11 +541,12 @@ const Home = () => {
 
   return (
     <>
+      <Graph />
       <div className="trading">
-        <input value={before} className="range" min="1" max="1000" type="range" onChange={(a) => setBefore(a.target.value)}/>
+        <input value={before} className="range" min="0" max="1000" type="range" onChange={(a) => setBefore(a.target.value)}/>
         <input inputMode="decimal" style={{width: "30px"}} value={before} onChange={(a) => setBefore(+a.target.value)}/>
         <br />
-        <input value={after} className="range" min="1" max="1000" type="range" onChange={(a) => setAfter(a.target.value)}/>
+        <input value={after} className="range" min="0" max="1000" type="range" onChange={(a) => setAfter(a.target.value)}/>
         <input min="1" inputMode="decimal" style={{width: "30px"}} value={after} onChange={(a) => setAfter(+a.target.value)}/>
         { +after >= +before ? 
           <div style={{color: "green", fontWeight: "bold", fontFamily: "Arial", fontSize: 22}}>
