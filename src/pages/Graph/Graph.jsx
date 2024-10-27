@@ -1,5 +1,4 @@
 import "./Graph.css";
-import { useEffect } from "react";
 import { useState } from "react";
 
 const Graph = () => {
@@ -27,7 +26,17 @@ const Graph = () => {
     "O",
   ]);
 
-  useEffect(() => {}, []);
+
+
+
+  const ali = [1,2,[1,2,3],4,5];
+
+  console.log(ali)
+
+
+
+
+
 
   const browseGraph = () => {
     let arr = [];

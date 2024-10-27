@@ -3,14 +3,13 @@ import { Pagination as Pagin, PaginationItem, Skeleton } from "@mui/material";
 import "./Home.css";
 import { useEffect, useState, useRef } from "react";
 import { useSearchParams, Link, useNavigate } from "react-router-dom";
-import Graph from "../Graph/Graph";
 
 
 const Home = () => {
-  const [ws, setWs] = useState(null);
+  //const [ws, setWs] = useState(null);
   const [input, setInput] = useState("");
   const [name, setName] = useState("");
-  const [messages, setMessages] = useState([]);
+  //const [messages, setMessages] = useState([]);
   const [a, setA] = useState("https://nainbot.ru/sources/1.jpg");
   const [mus, setMus] = useState("https://nainbot.ru/sources/sir.mp3");
   const [error, setError] = useState(false);
@@ -22,6 +21,12 @@ const Home = () => {
   const intRef = useRef();
   const na = useRef(false);
   const [time, setTime] = useState("00:00:00");
+
+
+  const [log, setLog] = useState(true)
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [nick, setNick] = useState("")
 
   const getZero = (length) => {
     return length === 1 ? "0" : "";
@@ -38,7 +43,7 @@ const Home = () => {
       6: "Июля",
       7: "Августа",
       8: "Сентября",
-      9: "Октябряяя",
+      9: "Октября",
       10: "Ноября",
       11: "Декабря",
     };
@@ -51,11 +56,9 @@ const Home = () => {
     const days = tim.getDate();
     const year = tim.getFullYear();
 
-    return `${year}, ${days} ${months[month]}, ${
-      getZero(2 - hours.toString().length) + hours
-    }:${getZero(2 - minutes.toString().length) + minutes}:${
-      getZero(2 - seconds.toString().length) + seconds
-    }`;
+    return `${year}, ${days} ${months[month]}, ${getZero(2 - hours.toString().length) + hours
+      }:${getZero(2 - minutes.toString().length) + minutes}:${getZero(2 - seconds.toString().length) + seconds
+      }`;
   };
 
   const [date, setDate] = useState(getTime());
@@ -78,15 +81,12 @@ const Home = () => {
       intRef.current = setInterval(() => {
         na.current = +na.current + 100;
         setTime(
-          `${
-            getZero(parseInt((((+na.current / 1000 - ((+na.current / 1000) % 60)) / 60) - ((+na.current / 1000 - ((+na.current / 1000) % 60)) / 60) % 60) / 60 % 24).toString().length) +
-            (((+na.current / 1000 - ((+na.current / 1000) % 60)) / 60) - ((+na.current / 1000 - ((+na.current / 1000) % 60)) / 60) % 60) / 60 % 24
-          }:${
-            getZero(2 - parseInt((+na.current / 1000 - ((+na.current / 1000) % 60)) / 60 % 60).toString().length) +
-            (+na.current / 1000 - ((+na.current / 1000) % 60)) / 60 % 60
-          }:${
-            getZero(2 - parseInt((+na.current / 1000) % 60).toString().length) +
-            (parseInt(+na.current / 1000) % 60)
+          `${getZero(parseInt((((+na.current / 1000 - ((+na.current / 1000) % 60)) / 60) - ((+na.current / 1000 - ((+na.current / 1000) % 60)) / 60) % 60) / 60 % 24).toString().length) +
+          (((+na.current / 1000 - ((+na.current / 1000) % 60)) / 60) - ((+na.current / 1000 - ((+na.current / 1000) % 60)) / 60) % 60) / 60 % 24
+          }:${getZero(2 - parseInt((+na.current / 1000 - ((+na.current / 1000) % 60)) / 60 % 60).toString().length) +
+          (+na.current / 1000 - ((+na.current / 1000) % 60)) / 60 % 60
+          }:${getZero(2 - parseInt((+na.current / 1000) % 60).toString().length) +
+          (parseInt(+na.current / 1000) % 60)
           }`
         );
       }, 100);
@@ -135,7 +135,7 @@ const Home = () => {
       [
         [
           [[1929], [[[[23], 2323]], [[11111111111], 3423432], [[232]]]],
-          [[[23]]],
+          [[[23], [[[[]], [[[[[[[[87]]]]]]]]]]]],
         ],
       ],
     ],
@@ -163,12 +163,12 @@ const Home = () => {
       },
     };
 
-    ob.say();
-    console.log(ob);
+    //ob.say();
+    //console.log(ob);
 
-    for (let key in ob) {
-      console.log(typeof ob[key], key);
-    }
+    // for (let key in ob) {
+    //   console.log(typeof ob[key], key);
+    // }
 
     ////////////////////////////////////////
     // const n = 111
@@ -342,8 +342,7 @@ const Home = () => {
 
   const getData = async (page) => {
     const response = await fetch(
-      `https://jsonplaceholder.typicode.com/comments?_start=${
-        (page - 1) * 10
+      `https://jsonplaceholder.typicode.com/comments?_start=${(page - 1) * 10
       }&_limit=10`
     );
     const data = await response.json();
@@ -355,8 +354,7 @@ const Home = () => {
     const total = 10;
 
     const response = await fetch(
-      `https://jsonplaceholder.typicode.com/comments?_start=${
-        (pag - 1) * total
+      `https://jsonplaceholder.typicode.com/comments?_start=${(pag - 1) * total
       }&_limit=${total}`
     );
     const data = await response.json();
@@ -398,43 +396,43 @@ const Home = () => {
 
     getData(page);
 
-    const ws = new WebSocket("wss://www.instagram-vpn.ru/ws/");
+    /*const ws = new WebSocket("wss://www.instagram-vpn.ru/ws/");
     ws.onopen = (obj) => {
       //console.log("Open!");
     };
-    setWs(ws);
+    setWs(ws); */
     // eslint-disable-next-line
   }, []);
 
-  const ali = () => {
-    setInput("");
-    if (!name.trim() || !input.trim()) {
-      alert("Заполните поля!");
-      return;
-    }
-    ws.send(
-      JSON.stringify({
-        name,
-        message: input,
-      })
-    );
-  };
+  // const ali = () => {
+  //   setInput("");
+  //   if (!name.trim() || !input.trim()) {
+  //     alert("Заполните поля!");
+  //     return;
+  //   }
+  //   ws.send(
+  //     JSON.stringify({
+  //       name,
+  //       message: input,
+  //     })
+  //   );
+  // };
 
-  const clear = () => {
-    ws.send(
-      JSON.stringify({
-        type: "clear",
-      })
-    );
-  };
+  // const clear = () => {
+  //   ws.send(
+  //     JSON.stringify({
+  //       type: "clear",
+  //     })
+  //   );
+  // };
 
-  if (ws) {
-    ws.onmessage = (obj) => {
-      const data = JSON.parse(obj.data);
-      if (data.type === "connect") setMessages(data.messages);
-      else setMessages([...messages, JSON.parse(obj.data)]);
-    };
-  }
+  // if (ws) {
+  //   ws.onmessage = (obj) => {
+  //     const data = JSON.parse(obj.data);
+  //     if (data.type === "connect") setMessages(data.messages);
+  //     else setMessages([...messages, JSON.parse(obj.data)]);
+  //   };
+  // }
 
   const handleAva = () => {
     const img = new Image();
@@ -486,7 +484,7 @@ const Home = () => {
     const hoc = (child, page) => {
       return (
         <Link
-          onClick={page !== current ? onClick : () => {}}
+          onClick={page !== current ? onClick : () => { }}
           to={`/?page=${page}`}
         >
           {child}
@@ -501,7 +499,7 @@ const Home = () => {
           page={page}
           disabled={disabled}
           type={type}
-          color={"secondary"} 
+          color={"secondary"}
           variant="outlined"
         />
       );
@@ -514,47 +512,86 @@ const Home = () => {
   const renderSkeleton = () => {
     return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((e, index) => {
       return (
-      <div className="skelet" key={index}>
-        <Skeleton
-          className="skelet-span"
-          animation="wave"
-          width="80%"
-        />
-        <Skeleton
-          className="skelet-span"
-          animation="wave"
-          width="80%"
-        />
-        <Skeleton
-          className="skelet-span"
-          animation="wave"
-          width="80%"
-        />
-        <Skeleton
-          className="skelet-span"
-          animation="wave"
-          width="80%"
-        />
-      </div>
-    )}) 
+        <div className="skelet" key={index}>
+          <Skeleton
+            className="skelet-span"
+            animation="wave"
+            width="80%"
+          />
+          <Skeleton
+            className="skelet-span"
+            animation="wave"
+            width="80%"
+          />
+          <Skeleton
+            className="skelet-span"
+            animation="wave"
+            width="80%"
+          />
+          <Skeleton
+            className="skelet-span"
+            animation="wave"
+            width="80%"
+          />
+        </div>
+      )
+    })
+  }
+
+  const signUp = () => {
+    alert(email)
+  }
+
+  const signIn = () => {
+
   }
 
   return (
     <>
-      <Graph />
+      <div className="account">
+
+        {
+          log ?
+            <div className="signIn">
+
+              <p onClick={() => setLog(!log)}>Зарегаться</p>
+              <input placeholder="Почта" type="email" onChange={(e) => setEmail(e.target.value)} />
+              <br />
+              <input placeholder="Пароль" type="password" onChange={(e) => setPassword(e.target.value)} />
+              <br />
+              <button>Войти</button>
+
+            </div>
+            :
+            <div className="signUp">
+
+              <p onClick={() => setLog(!log)}>Войти</p>
+              <input placeholder="Имя" type="email" onChange={(e) => setNick(e.target.value)} />
+              <br />
+              <input placeholder="Почта" type="text" onChange={(e) => setEmail(e.target.value)} />
+              <br />
+              <input placeholder="Пароль" type="password" onChange={(e) => setPassword(e.target.value)} />
+              <br />
+              <button onClick={() => signUp()}>Зарегаться</button>
+
+            </div>
+        }
+
+
+      </div>
       <div className="trading">
-        <input value={before} className="range" min="0" max="1000" type="range" onChange={(a) => setBefore(a.target.value)}/>
-        <input inputMode="decimal" style={{width: "30px"}} value={before} onChange={(a) => setBefore(+a.target.value)}/>
+        <input value={before} className="range" min="0" max="1000" type="range" onChange={(a) => setBefore(a.target.value)} />
+        <input inputMode="decimal" style={{ width: "30px" }} value={before} onChange={(a) => setBefore(+a.target.value)} />
         <br />
-        <input value={after} className="range" min="0" max="1000" type="range" onChange={(a) => setAfter(a.target.value)}/>
-        <input min="1" inputMode="decimal" style={{width: "30px"}} value={after} onChange={(a) => setAfter(+a.target.value)}/>
-        { +after >= +before ? 
-          <div style={{color: "green", fontWeight: "bold", fontFamily: "Arial", fontSize: 22}}>
-            {`${Math.abs((after / before * 100 - 100).toFixed(2))} %` }
+        <input value={after} className="range" min="0" max="1000" type="range" onChange={(a) => setAfter(a.target.value)} />
+        <input min="1" inputMode="decimal" style={{ width: "30px" }} value={after} onChange={(a) => setAfter(+a.target.value)} />
+        {+after >= +before ?
+          <div style={{ color: "green", fontWeight: "bold", fontFamily: "Arial", fontSize: 22 }}>
+            {`${Math.abs((after / before * 100 - 100).toFixed(2))} %`}
           </div>
-        : 
-          <div style={{color: "red", fontWeight: "bold", fontFamily: "Arial", fontSize: 22}}>
-            {`${Math.abs((after / before * 100 - 100).toFixed(2))} %` }
+          :
+          <div style={{ color: "red", fontWeight: "bold", fontFamily: "Arial", fontSize: 22 }}>
+            {`${Math.abs((after / before * 100 - 100).toFixed(2))} %`}
           </div>
         }
       </div>
@@ -575,21 +612,21 @@ const Home = () => {
       <div className="comments">
         {items.length !== 0
           ? items.map((comment, index) => {
-              return (
-                <div className="comments-card" key={index}>
-                  {/* <div className="comments-id">{comment.id}</div> */}
-                  <div className="comments-email">
-                    <span>Email:</span> {comment.email}
-                  </div>
-                  <div className="comments-name">
-                    <span>Name:</span> {comment.name}
-                  </div>
-                  <div className="comments-body">
-                    <span>Comment:</span> {comment.body}
-                  </div>
+            return (
+              <div className="comments-card" key={index}>
+                {/* <div className="comments-id">{comment.id}</div> */}
+                <div className="comments-email">
+                  <span>Email:</span> {comment.email}
                 </div>
-              );
-            })
+                <div className="comments-name">
+                  <span>Name:</span> {comment.name}
+                </div>
+                <div className="comments-body">
+                  <span>Comment:</span> {comment.body}
+                </div>
+              </div>
+            );
+          })
           : renderSkeleton()}
       </div>
       <br />
@@ -702,9 +739,9 @@ const Home = () => {
       <br /> <br />
       <button onClick={() => start()}>Старт</button>
       <br />
-      <button onClick={ali}>Отправить</button>
-      <button onClick={clear}>Очистка смс</button>
-      <div className="messages">
+      {/* {<button onClick={ali}>Отправить</button>} */}
+      {/* {<button onClick={clear}>Очистка смс</button>} */}
+      {/* {<div className="messages">
         {messages.map((message, ind) => {
           return (
             <div key={ind}>
@@ -721,7 +758,7 @@ const Home = () => {
             </div>
           );
         })}
-      </div>
+      </div>} */}
       <div>
         {re.current.map((comment) => {
           return (
