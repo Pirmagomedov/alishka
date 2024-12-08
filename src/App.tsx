@@ -8,6 +8,16 @@ function App() {
     f(): void
   }
 
+  class A implements f {
+    f() {
+
+    }
+  }
+
+  const a: A = new A()
+
+  a.f()
+
   return (
     <div className="App">
       <header className="App-header">
