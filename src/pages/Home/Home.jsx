@@ -56,6 +56,7 @@ const Home = () => {
     const days = tim.getDate();
     const year = tim.getFullYear();
 
+
     return `${year}, ${days} ${months[month]}, ${getZero(2 - hours.toString().length) + hours
       }:${getZero(2 - minutes.toString().length) + minutes}:${getZero(2 - seconds.toString().length) + seconds
       }`;
