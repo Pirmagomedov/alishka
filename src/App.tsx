@@ -14,9 +14,9 @@ function App() {
     }
   }
 
-  const a: A = new A()
+  const alimirza: A = new A()
 
-  a.f()
+  alimirza.f()
 
   return (
     <div className="App">
