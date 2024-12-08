@@ -1,7 +1,7 @@
 import React from "react"
 
 const Main = (): React.ReactNode => {
-
+ 
     interface Animal {
         eat(): void,
         sleep(): void
@@ -17,7 +17,7 @@ const Main = (): React.ReactNode => {
         }
 
         f() {
-            
+
         }
     }
 
