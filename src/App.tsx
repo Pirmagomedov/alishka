@@ -1,8 +1,7 @@
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./pages/Home/Home";
-import Graph from "./pages/Graph/Graph";
-import Main from "./pages/Main/Main";
+import Main from "./pages/Main/Main.tsx";
+import React from "react"
 
    
 const App = () => {
@@ -10,9 +9,7 @@ const App = () => {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={ <Main /> }/>
-          <Route path="/home" element={ <Home /> }/>
-          <Route path="/graph" element={<Graph /> }/>
+          <Route path="/" element={<Main /> }/>
           <Route path="/*" element={ <h1>404</h1> }/>
         </Routes>
       </BrowserRouter>
