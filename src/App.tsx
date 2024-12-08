@@ -10,16 +10,14 @@ function App() {
 
   class A implements f {
     f() {
-
+      alert("Hi")
     }
   }
 
   const alimirza: A = new A()
 
-  alimirza.f()
-
   return (
-    <div className="App">
+    <div className="App" onClick={alimirza.f}>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
