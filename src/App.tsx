@@ -10,7 +10,7 @@ function App() {
 
   class A implements f {
     f() {
-      alert("Hi")
+      alert("Alimirza")
     }
   }
 
