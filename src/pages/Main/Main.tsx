@@ -9,7 +9,7 @@ const Main = (): React.ReactNode => {
 
     class Dog implements Animal {
         eat(): void {
-            
+            //
         }
 
         sleep(): void {
