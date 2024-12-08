@@ -19,7 +19,7 @@ jobs:
       -  name: Build Project
          run: |
            sudo apt-get install rsync
-           npm install
+           npm install --legacy-peer-deps
            npm run build
            
       -  name: Deployment on server
