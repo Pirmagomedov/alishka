@@ -4,7 +4,7 @@ import Home from "./pages/Home/Home";
 import Graph from "./pages/Graph/Graph";
 import Main from "./pages/Main/Main";
 
-  
+   
 const App = () => {
   return (
     <div className="App">
