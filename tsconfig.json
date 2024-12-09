@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+      "moduleResolution": "node",
+      "allowJs": true,
+      "jsx": "react",
+      "module": "esnext",
+      "target": "es5",
+      "baseUrl": "./src", // Если используется относительный путь из src
+      "paths": {
+        "@components/*": ["src/components/*"]
+      },
+      "esModuleInterop": true
+    }
+  }
