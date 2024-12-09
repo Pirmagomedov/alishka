@@ -6,7 +6,7 @@ const Home = (): React.ReactElement => {
 
     return <div className="home-container">
       <header className="header">
-        <h1>Фонд благотворительности Аль-Хайр</h1>
+        <h1>Фонд благотворительности Аль-Хайр.</h1>
         <p className="tagline">Помогая другим, мы помогаем себе.</p>
       </header>
       
