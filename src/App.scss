@@ -1,0 +1,57 @@
+.burger {
+    height: 35px;
+    img {
+        width: 40px;
+    }
+}
+
+header {
+    margin-top: 15px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex !important;
+    align-items: center;
+    margin-left: 15px;
+
+    img {
+        width: 40px;
+    }
+}
+
+.left, .right {
+    div {
+        display: inline-block;
+    }
+}
+
+.left, .right {
+    display: flex;
+    align-items: center;
+}
+
+.label {
+    margin-left: 15px;
+    color: #178C00;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.acc {
+    margin-right: 15px;
+}
+
+.right {
+    img {
+        width: 40px;
+    }
+}
+
+body {
+    background-color: #D4D4D4;
+}
