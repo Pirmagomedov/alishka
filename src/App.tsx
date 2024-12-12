@@ -11,7 +11,7 @@ import img from "svg/imag.png"
 function App(): React.ReactElement {
 
   return (
-    <div style={{ marginLeft: 15, marginRight: 15 }}>
+    <div style={{ marginLeft: 25, marginRight: 25 }}>
       <header>
         <div className='header'>
           <div className='left'>
@@ -26,8 +26,8 @@ function App(): React.ReactElement {
             </div>
           </div>
           <div className='right'>
-            <img className='acc' src={`${acc}`} alt="" />
-            <img src={`${hel}`} alt="" />
+            <img className='acc' src={`${hel}`} alt="" />
+            <img src={`${acc}`} alt="" />
           </div>
         </div>
       </header>
@@ -38,6 +38,9 @@ function App(): React.ReactElement {
         </Routes>
       </BrowserRouter>
       <footer>
+        <div className='footer'>
+
+        </div>
       </footer>
     </div>
   );

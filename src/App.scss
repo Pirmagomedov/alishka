@@ -6,7 +6,7 @@
 }
 
 header {
-    margin-top: 15px;
+    margin-top: 25px;
 }
 
 .header {
@@ -39,6 +39,7 @@ header {
     margin-left: 15px;
     color: #178C00;
     font-weight: bold;
+    font-size: 18px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -51,6 +52,19 @@ header {
         width: 40px;
     }
 }
+
+/////////////////
+
+.footer {
+    margin-top: 1000px;
+    background-color: #148400;
+    height: 180px;
+    border-radius: 30px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+
 
 body {
     background-color: #D4D4D4;
