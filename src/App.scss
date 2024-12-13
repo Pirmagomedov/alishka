@@ -73,13 +73,22 @@ header {
         margin-left: 20px;
         display: inline-block;
     }
+
+    &-content {
+        color: white;
+        font-size: 18px;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        text-align: center;
+        line-height: 50px;
+        margin-top: 20px;
+    }
 }
 
 
 /////////////////
 
 .footer-parent {
-    margin-top: 1000px;
+    margin-top: 80px;
     background-color: #148400;
     height: 180px;
     border-radius: 30px;

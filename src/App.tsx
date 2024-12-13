@@ -22,16 +22,22 @@ function App(): React.ReactElement {
         <div className='menu-ex' onClick={() => switchMenu()}>
           <img src={`${ex}`} alt="burger" />
         </div>
+        <div className='menu-content'>
+          <div>Новости</div>
+          <div>Кто мы</div>
+          <div>Фонд</div>
+          <div>Акции</div>
+        </div>
       </div>
       <div style={{ marginLeft: 25, marginRight: 25 }}>
         <header>
           <div className='header'>
             <div className='left'>
               <div className='burger' onClick={() => switchMenu()}>
-                <img src={`${svg}`} alt="burger" />
+                <img src={svg} alt="burger" />
               </div>
               <div className='logo'>
-                <img src={`${img}`} alt="" />
+                <img src={img} alt="sdsd" />
               </div>
               <div className='label'>
                 Аль-Хайр
@@ -39,7 +45,7 @@ function App(): React.ReactElement {
             </div>
             <div className='right'>
               <img className='acc' src={`${hel}`} alt="" />
-              <img src={`${acc}`} alt="" />
+              <img src={acc} alt="sdad" />
             </div>
           </div>
         </header>
