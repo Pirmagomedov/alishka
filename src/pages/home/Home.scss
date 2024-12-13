@@ -2,3 +2,50 @@ body {
   margin: 0;
   padding: 0;
 }
+
+.cubiki {
+  margin-top: 50px;
+  position: relative;
+  font-size: 20px;
+  display: flex;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+  &-first {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background-color: green;
+    border-radius: 25px;
+    color: white;
+    padding-left: 20px;
+    padding-top: 20px;
+    box-sizing: border-box;
+  }
+
+  &-second {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background-color: #7BFF60;
+    border-radius: 25px;
+    top: 130px;
+    left: 80px;
+    color: grey;
+    padding-left: 20px;
+    padding-top: 20px;
+    box-sizing: border-box;
+  }
+
+  &-third {
+    position: absolute;
+    width: 200px;
+    height: 70px;
+    background-color: #e5ff00;
+    border-radius: 25px;
+    top: 300px;
+    right: 0;
+    text-align: center;
+    padding-top: 20px;
+    box-sizing: border-box;
+  }
+}

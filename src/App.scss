@@ -1,5 +1,6 @@
 .burger {
     height: 35px;
+
     img {
         width: 40px;
     }
@@ -24,13 +25,15 @@ header {
     }
 }
 
-.left, .right {
+.left,
+.right {
     div {
         display: inline-block;
     }
 }
 
-.left, .right {
+.left,
+.right {
     display: flex;
     align-items: center;
 }
@@ -55,13 +58,68 @@ header {
 
 /////////////////
 
-.footer {
+
+.menu {
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    background-color: #178C00;
+    height: 50%;
+    width: 100%;
+    transition: 1s;
+
+    &-ex {
+        margin-top: 20px;
+        margin-left: 20px;
+        display: inline-block;
+    }
+}
+
+
+/////////////////
+
+.footer-parent {
     margin-top: 1000px;
     background-color: #148400;
     height: 180px;
     border-radius: 30px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    color: #D4D4D4;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    &__contact {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+        font-size: 10px;
+    }
+
+    &__title {
+        font-size: 30px;
+    }
+
+    &__fond {
+        font-size: 11px;
+    }
+
+    &__adress {
+        font-size: 10px;
+        margin-top: 12px;
+    }
+
+    &__copy {
+        margin-top: 25px;
+        font-size: 12px;
+    }
+
+    &__number {
+        margin-right: 30px;
+    }
 }
 
 
