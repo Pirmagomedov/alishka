@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import Home from './pages/home/Home';
 import "./App.scss";
@@ -11,14 +11,17 @@ import ex from "svg/exit.svg"
 
 function App(): React.ReactElement {
   const [menu, showMenu] = useState(false)
+  const reMe = useRef(null)
 
   const switchMenu = (): void => {
     showMenu(!menu)
   }
 
+  const clickOutside = (e): void => !reMe.current.contains(e.target) && menu && showMenu(false)
+
   return (
-    <div>
-      <div className='menu' style={menu ? { left: 0 } : { left: "-100%" }}>
+    <div onClick={(e) => clickOutside(e)}>
+      <div ref={reMe} className='menu' style={menu ? { left: 0 } : { left: "-100%" }}>
         <div className='menu-ex' onClick={() => switchMenu()}>
           <img src={`${ex}`} alt="burger" />
         </div>
