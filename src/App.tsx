@@ -9,7 +9,7 @@ import img from "svg/imag.png"
 import ex from "svg/exit.svg"
 
 
-function App(): React.ReactElement {
+const App = (): React.ReactElement => {
   const [menu, showMenu] = useState(false)
   const reMe = useRef(null)
 

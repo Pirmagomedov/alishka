@@ -1,10 +1,42 @@
-import React from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import maga from "./../../svg/maga.png"
 import leftArrow from "./../../svg/leftArrow.svg"
 import "./Home.scss";
 
 
 const Home = (): React.ReactElement => {
+    
+    
+    function A(a) {
+        console.log(this,a)
+        //this.a = a
+    }
+    console.log(A(2))
+
+    A.get = function(a) {
+        console.log(console.log(a))
+    }
+
+    A.prototype.gett = function() {
+        console.log(this.a)
+    }
+
+    function B(a, b) {
+        A.call(this, a)
+        this.b = b
+    }
+    
+    B.prototype = Object.create(A.prototype)
+
+    B.prototype.gett = function() {  
+        A.prototype.gett.call(this)
+        console.log("Ext logic")
+    }
+
+    const t = new B("re", 123)
+    t.gett()
+    
+
 
     return <div className="home-container">
         <div className="cubiki">
