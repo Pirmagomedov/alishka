@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React from "react";
 import maga from "./../../svg/maga.png"
 import leftArrow from "./../../svg/leftArrow.svg"
 import "./Home.scss";
@@ -7,36 +7,33 @@ import "./Home.scss";
 const Home = (): React.ReactElement => {
     
     
-    function A(a) {
-        console.log(this,a)
-        //this.a = a
-    }
-    console.log(A(2))
-
-    A.get = function(a) {
-        console.log(console.log(a))
+    function Bird(color: string): void {
+        this.color = color
     }
 
-    A.prototype.gett = function() {
-        console.log(this.a)
+    Bird.checkWeight = function(weight: number): string {
+        return weight >= 10 ? "Adult" : "Not adult"
     }
 
-    function B(a, b) {
-        A.call(this, a)
-        this.b = b
+    Bird.prototype.walk = function(): void {
+        console.log("Bird is walking")
+    }
+
+    function Eagle(color: string, weight: number): void {
+        Bird.call(this, color)
+        this.weight = weight
     }
     
-    B.prototype = Object.create(A.prototype)
+    Eagle.prototype = Object.create(Bird.prototype)
 
-    B.prototype.gett = function() {  
-        A.prototype.gett.call(this)
-        console.log("Ext logic")
+    Eagle.prototype.walk = function(): void {
+        Bird.prototype.walk.call(this)
+        console.log("This is Eagle")
     }
 
-    const t = new B("re", 123)
-    t.gett()
+    const rubik = new Eagle("grey", 19)
+    rubik.walk()
     
-
 
     return <div className="home-container">
         <div className="cubiki">
