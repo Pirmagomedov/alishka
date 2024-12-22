@@ -5,6 +5,43 @@ import "./Home.scss";
 
 
 const Home = (): React.ReactElement => {
+
+
+    class Biird {
+        public color: string
+
+        constructor(color: string) {
+            this.color = color
+        }
+
+        static checkWeight(weight: number): string {
+            return weight >= 10 ? "Adult" : "Not adult"
+        }
+
+        public walk(): void {
+            console.log("Bird is walking")
+        }
+    }
+
+    class Eaggle extends Biird {
+        public weight: number
+
+        constructor(color: string, weight: number) {
+            super(color)
+            this.weight = weight
+        }
+
+        public walk(): void {
+            super.walk()
+            console.log("This is Eagle")
+        }
+    }
+
+    const rubikk = new Eaggle("grey", 19)
+    rubikk.walk()
+
+
+    ///////////////////////////
     
     
     function Bird(color: string): void {
@@ -33,6 +70,9 @@ const Home = (): React.ReactElement => {
 
     const rubik = new Eagle("grey", 19)
     rubik.walk()
+
+    console.dir(Bird.prototype)
+    console.dir(Biird)
     
 
     return <div className="home-container">
