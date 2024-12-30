@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import maga from "./../../svg/maga.png"
 import leftArrow from "./../../svg/leftArrow.svg"
 import "./Home.scss";
@@ -6,74 +6,32 @@ import "./Home.scss";
 
 const Home = (): React.ReactElement => {
 
+    const [s, setS] = useState(1)
+    const re = useRef(1)
 
-    class Biird {
-        public color: string
 
-        constructor(color: string) {
-            this.color = color
-        }
 
-        static checkWeight(weight: number): string {
-            return weight >= 10 ? "Adult" : "Not adult"
-        }
+    // const array3 = [[11, 12], [2, 3], [5, 7], [1, 4], [8, 10], [6, 8]];
+    // const merge = (arr) => {
+    //     arr.sort((a, b) => a[0] - b[0])
+    //     if (arr.length === 0) return []
+    //     const y = [...arr[0]]
+    //     const a = arr.filter((e, i) => {
+    //         if (i === 0) return false
+    //         if (!( e[1] < y[0] || e[0] > y[1] )) {
+    //             if (e[0] < y[0]) y[0] = e[0]
+    //             if (e[1] > y[1]) y[1] = e[1]
+    //         } else return true
+    //     })
+    //     return [y, ...merge(a)]
+    // }
 
-        public walk(): void {
-            console.log("Bird is walking")
-        }
+    // console.log(merge(array3))
+    console.log(s)
+    function a () {
+        re.current++
+        setS(s+1)
     }
-
-    class Eaggle extends Biird {
-        public weight: number
-
-        constructor(color: string, weight: number) {
-            super(color)
-            this.weight = weight
-        }
-
-        public walk(): void {
-            super.walk()
-            console.log("This is Eagle")
-        }
-    }
-
-    const rubikk = new Eaggle("grey", 19)
-    rubikk.walk()
-
-
-    ///////////////////////////
-    
-    
-    function Bird(color: string): void {
-        this.color = color
-    }
-
-    Bird.checkWeight = function(weight: number): string {
-        return weight >= 10 ? "Adult" : "Not adult"
-    }
-
-    Bird.prototype.walk = function(): void {
-        console.log("Bird is walking")
-    }
-
-    function Eagle(color: string, weight: number): void {
-        Bird.call(this, color)
-        this.weight = weight
-    }
-    
-    Eagle.prototype = Object.create(Bird.prototype)
-
-    Eagle.prototype.walk = function(): void {
-        Bird.prototype.walk.call(this)
-        console.log("This is Eagle")
-    }
-
-    const rubik = new Eagle("grey", 19)
-    rubik.walk()
-
-    console.dir(Bird.prototype)
-    console.dir(Biird)
-    
 
     return <div className="home-container">
         <div className="cubiki">
@@ -86,8 +44,9 @@ const Home = (): React.ReactElement => {
             <div className="cubiki-third">
                 Помочь
             </div>
-        </div>
+        </div><div onClick={a}>2</div>
         <div className="infocard">
+            <button onClick={a}></button>{s}
             <div className="infocard__arrow">
                 <img src={leftArrow} alt="s" />
             </div>
