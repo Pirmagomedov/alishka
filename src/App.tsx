@@ -52,12 +52,12 @@ const App = (): React.ReactElement => {
             </div>
           </div>
         </header>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/*" element={<h1>404</h1>} />
-          </Routes>
-        </BrowserRouter>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/*" element={<h1>404</h1>} />
+            </Routes>
+          </BrowserRouter>
         <footer>
           <div className='footer-parent'>
             <div className='footer-parent__title'>

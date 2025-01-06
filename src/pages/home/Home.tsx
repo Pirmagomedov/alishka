@@ -1,38 +1,12 @@
-import React, { useRef, useState } from "react";
+import React, { useMemo } from "react";
 import maga from "./../../svg/maga.png"
 import leftArrow from "./../../svg/leftArrow.svg"
 import "./Home.scss";
 
 
-const Home = (): React.ReactElement => {
+const Home: React.FC = () => {
 
-    const [s, setS] = useState(1)
-    const re = useRef(1)
-
-
-
-    // const array3 = [[11, 12], [2, 3], [5, 7], [1, 4], [8, 10], [6, 8]];
-    // const merge = (arr) => {
-    //     arr.sort((a, b) => a[0] - b[0])
-    //     if (arr.length === 0) return []
-    //     const y = [...arr[0]]
-    //     const a = arr.filter((e, i) => {
-    //         if (i === 0) return false
-    //         if (!( e[1] < y[0] || e[0] > y[1] )) {
-    //             if (e[0] < y[0]) y[0] = e[0]
-    //             if (e[1] > y[1]) y[1] = e[1]
-    //         } else return true
-    //     })
-    //     return [y, ...merge(a)]
-    // }
-
-    // console.log(merge(array3))
-    console.log(s)
-    function a () {
-        re.current++
-        setS(s+1)
-    }
-
+    
     return <div className="home-container">
         <div className="cubiki">
             <div className="cubiki-first">
@@ -44,9 +18,8 @@ const Home = (): React.ReactElement => {
             <div className="cubiki-third">
                 Помочь
             </div>
-        </div><div onClick={a}>2</div>
+        </div>
         <div className="infocard">
-            <button onClick={a}></button>{s}
             <div className="infocard__arrow">
                 <img src={leftArrow} alt="s" />
             </div>
