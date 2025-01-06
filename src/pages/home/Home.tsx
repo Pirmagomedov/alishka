@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useState } from "react";
 import maga from "./../../svg/maga.png"
 import leftArrow from "./../../svg/leftArrow.svg"
 import "./Home.scss";
@@ -6,8 +6,44 @@ import "./Home.scss";
 
 const Home: React.FC = () => {
 
-    
+    const [clocks, setClocks] = useState(12)
+    const [minutes, setMinutes] = useState(15)
+
+
+    const setC = (e) => {
+        const bool = !Number.isNaN(+e.target.value)
+        if (bool && 0 <= +e.target.value && +e.target.value <= 23) setClocks(+e.target.value)
+
+    }
+
+    const setM = (e) => {
+        const bool = !Number.isNaN(+e.target.value)
+        if (bool && 0 <= +e.target.value && +e.target.value <= 59) setMinutes(+e.target.value)
+    }
+
+
     return <div className="home-container">
+        <div className="time">
+            <div className="time__dis">
+                <div className="time__clocks">
+                    <input value={clocks < 10 ? "0" + clocks : "" + clocks} onChange={setC} type="text" />
+                    <span>{(clocks * 30 + minutes / 2) % 360}°</span>
+                </div>
+                <div className="time__minutes">
+                    <input value={minutes < 10 ? "0" + minutes : "" + minutes} onChange={setM} type="text" />
+                    <span>{minutes * 6}°</span>
+                </div>
+            </div>
+            <div className="time__wat">
+                <div className="time__cloc" style={{ transform: `rotate(${(clocks * 30 + minutes / 2) % 360}deg)` }}>
+                    <div className="time__cloc_arrow"></div>
+                </div>
+                <div className="time__min" style={{ transform: `rotate(${minutes * 6}deg)` }}>
+                    <div className="time__min_arrow"></div>
+                </div>
+            </div>
+        </div>
+
         <div className="cubiki">
             <div className="cubiki-first">
                 Стань частью добра вместе с фондом “Аль-Хайр”
