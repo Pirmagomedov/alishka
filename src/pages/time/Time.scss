@@ -1,0 +1,114 @@
+.time {
+  &__dig {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-top: 15px;
+    box-sizing: border-box;
+    color: #ffffff;
+  }
+
+  &__cl {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    &_arr {
+      width: 2px;
+      height: 10px;
+      background-color: #ffffff;
+    }
+  }
+
+  &__mi {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    &_arr {
+      width: 1px;
+      height: 5px;
+      background-color: #ffffff;
+    }
+  }
+
+
+  &__wat {
+    position: relative;
+    display: inline-block;
+    width: 250px;
+    height: 250px;
+    background-color: rgb(0, 0, 0);
+    border-radius: 50%;
+  }
+
+  &__cloc {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+
+    &_arrow {
+      width: 4px;
+      height: 30%;
+      border-radius: 5px;
+      margin-top: 25%;
+      background-color: #ffffff;
+    }
+  }
+
+  &__min {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+
+    &_arrow {
+      width: 3px;
+      height: 45%;
+      border-radius: 5px;
+      margin-top: 10%;
+      background-color: #ffffff;
+    }
+  }
+
+  &__sec {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+
+    &_arrow {
+      width: 2px;
+      height: 48%;
+      border-radius: 5px;
+      margin-top: 7%;
+      background-color: #ffffff;
+    }
+  }
+
+  &__clocks {
+    margin-bottom: 20px;
+  }
+
+  &__dis {
+    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}

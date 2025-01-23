@@ -5,7 +5,7 @@
       //"lib": ["dom", "dom.iterable", "esnext"],
       "jsx": "react",
       "module": "esnext",
-      "target": "es5",
+      "target": "es2015",
       "baseUrl": "./src", // Если используется относительный путь из src
       "paths": {
         "@components/*": ["src/components/*"]
