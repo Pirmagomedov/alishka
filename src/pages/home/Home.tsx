@@ -10,6 +10,7 @@ const Home: React.FC = () => {
 
 
     return <div className="home-container">
+<Time/>
         <div className="cubiki">
             <div className="cubiki-first">
                 Стань частью добра вместе с фондом “Аль-Хайр”
